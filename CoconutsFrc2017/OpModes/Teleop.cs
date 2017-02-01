@@ -3,7 +3,7 @@ using static CoconutsFrc2017.Core.RobotMap;
 
 namespace CoconutsFrc2017.OpModes
 {
-    public class Teleop : OperationMode
+    public class TeleOp : OperationMode
     {
         protected override void End()
         {
