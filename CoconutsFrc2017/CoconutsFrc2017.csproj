@@ -88,9 +88,18 @@
     <Compile Include="Core\RobotConfig.cs" />
     <Compile Include="Core\RobotMap.cs" />
     <Compile Include="OpModes\Auto.cs" />
+    <Compile Include="OpModes\AutonomousModes\SampleAuto1.cs" />
+    <Compile Include="OpModes\AutonomousModes\SampleAuto2.cs" />
     <Compile Include="OpModes\Disabled.cs" />
-    <Compile Include="OpModes\Teleop.cs" />
+    <Compile Include="OpModes\TeleOp.cs" />
     <Compile Include="OpModes\Test.cs" />
+    <Compile Include="Other\ObjectDetector.cs" />
+    <Compile Include="Other\PixyLibs\Block.cs" />
+    <Compile Include="Other\PixyLibs\BlockArray.cs" />
+    <Compile Include="Other\PixyLibs\pixy.cs" />
+    <Compile Include="Other\PixyLibs\PixyHandler.cs" />
+    <Compile Include="Other\PixyLibs\pixyPINVOKE.cs" />
+    <Compile Include="Other\VisionHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

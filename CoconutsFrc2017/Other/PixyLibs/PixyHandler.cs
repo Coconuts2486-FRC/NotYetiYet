@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coconuts.Vision.PixyLibs
+namespace CoconutsFrc2017.Vision.PixyLibs
 {
     class PixyHandler
     {

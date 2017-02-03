@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coconuts.Vision
+namespace CoconutsFrc2017.Vision
 {
     class ObjectDetector
     {

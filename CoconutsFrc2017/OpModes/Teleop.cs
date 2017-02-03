@@ -15,6 +15,10 @@ namespace CoconutsFrc2017.OpModes
 
         protected override void Main()
         {
+            while (true)
+            {
+                DriveTrain.TankDrive(DriveLeft.GetY(), DriveRight.GetY());
+            }
         }
     }
 }

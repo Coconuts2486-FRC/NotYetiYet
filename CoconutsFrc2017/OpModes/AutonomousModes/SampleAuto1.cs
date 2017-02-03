@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Coconuts.OpModes.AutonomousModes
+namespace CoconutsFrc2017.OpModes.AutonomousModes
 {
     public enum ModesEnum
     {
