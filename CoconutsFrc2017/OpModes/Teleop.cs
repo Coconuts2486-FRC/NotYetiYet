@@ -18,6 +18,10 @@ namespace CoconutsFrc2017.OpModes
             while (true)
             {
                 DriveTrain.TankDrive(DriveLeft.GetY(), DriveRight.GetY());
+
+                if (Gamepad.GetRawButton(1)) Shooter.Set(1);
+                else Shooter.Set(0);
+                Snooze(10);
             }
         }
     }

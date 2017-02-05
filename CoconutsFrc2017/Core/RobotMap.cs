@@ -5,10 +5,11 @@ namespace CoconutsFrc2017.Core
 {
     public static class RobotMap
     {
-        public static Talon Right1 { get; private set; }
-        public static Talon Right2 { get; private set; }
-        public static Talon Left1 { get; private set; }
-        public static Talon Left2 { get; private set; }
+        public static CANTalon Right1 { get; private set; }
+        public static CANTalon Right2 { get; private set; }
+        public static CANTalon Left1 { get; private set; }
+        public static CANTalon Left2 { get; private set; }
+        public static CANTalon Shooter { get; private set; }
         public static PowerDistributionPanel PDP { get; private set; }
         public static Compressor PCM { get; private set; }
         public static RobotDrive DriveTrain { get; private set; }
@@ -16,22 +17,33 @@ namespace CoconutsFrc2017.Core
         public static Solenoid PTO { get; private set; }
         public static Joystick DriveLeft { get; private set; }
         public static Joystick DriveRight { get; private set; }
+        public static Joystick Gamepad { get; private set; }
 
         public static void Init()
         {
-            Right1 = new Talon(0);
+       
+            Right1 = new CANTalon(3);
             Right1.SafetyEnabled = false;
+            Right1.ClearStickyFaults();
 
-            Right2 = new Talon(1);
+            Right2 = new CANTalon(4);
             Right2.SafetyEnabled = false;
+            Right2.ClearStickyFaults();
 
-            Left1 = new Talon(2);
+            Left1 = new CANTalon(1);
             Left1.SafetyEnabled = false;
             Left1.Inverted = true;
+            Left1.ClearStickyFaults();
 
-            Left2 = new Talon(3);
+            Left2 = new CANTalon(8);
             Left2.SafetyEnabled = false;
             Left2.Inverted = true;
+            Left2.ClearStickyFaults();
+
+            Shooter = new CANTalon(2);
+            Shooter.SafetyEnabled = false;
+            Shooter.Inverted = true;
+            Shooter.ClearStickyFaults();
 
             PDP = new PowerDistributionPanel();
             PDP.ClearStickyFaults();
@@ -49,6 +61,8 @@ namespace CoconutsFrc2017.Core
             DriveLeft = new Joystick(0);
 
             DriveRight = new Joystick(1);
+
+            Gamepad = new Joystick(2);
         }
     }
 }
