@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChadDotNet">
-      <HintPath>packages\ChadNet\ChadDotNet.dll</HintPath>
+      <HintPath>packages\ChadDotNet.dll</HintPath>
     </Reference>
     <Reference Include="FRC.CameraServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\FRC.CameraServer.1.0.1\lib\net45\FRC.CameraServer.dll</HintPath>
@@ -88,8 +88,11 @@
     <Compile Include="Core\RobotConfig.cs" />
     <Compile Include="Core\RobotMap.cs" />
     <Compile Include="OpModes\Auto.cs" />
-    <Compile Include="OpModes\AutonomousModes\SampleAuto1.cs" />
-    <Compile Include="OpModes\AutonomousModes\SampleAuto2.cs" />
+    <Compile Include="OpModes\Autonomous\Handler.cs" />
+    <Compile Include="OpModes\Autonomous\Modes\IAuto.cs" />
+    <Compile Include="OpModes\Autonomous\Modes\Blue.cs" />
+    <Compile Include="OpModes\Autonomous\Modes\Disabled.cs" />
+    <Compile Include="OpModes\Autonomous\Modes\Red.cs" />
     <Compile Include="OpModes\Disabled.cs" />
     <Compile Include="OpModes\TeleOp.cs" />
     <Compile Include="OpModes\Test.cs" />

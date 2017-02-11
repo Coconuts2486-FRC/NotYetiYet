@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoconutsFrc2017.OpModes.AutonomousModes
+namespace CoconutsFrc2017.OpModes.Autonomous.Modes
 {
-    class SampleAuto2
+    interface IAuto
     {
+        void Run();
     }
 }
