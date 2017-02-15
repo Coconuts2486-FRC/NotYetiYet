@@ -5,9 +5,6 @@ namespace CoconutsFrc2017.OpModes
 {
     public class TeleOp : OperationMode
     {
-        protected override void End()
-        {
-        }
 
         protected override void Init()
         {
@@ -17,12 +14,17 @@ namespace CoconutsFrc2017.OpModes
         {
             while (true)
             {
-                DriveTrain.TankDrive(DriveLeft.GetY(), DriveRight.GetY());
+                DriveTrain.TankDrive(DriveLeft.GetY(), -DriveRight.GetY());
 
-                if (Gamepad.GetRawButton(1)) Shooter.Set(1);
-                else Shooter.Set(0);
-                Snooze(10);
+                if (DriveLeft.GetY() < -0.1 || DriveRight.GetY() < -0.1) Collector.Set(1);
+                else Collector.Set(0);
+                
             }
+        }
+
+
+        protected override void End()
+        {
         }
     }
 }
