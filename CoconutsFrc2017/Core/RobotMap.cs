@@ -9,7 +9,7 @@ namespace CoconutsFrc2017.Core
         public static CANTalon Right2 { get; private set; }
         public static CANTalon Left1 { get; private set; }
         public static CANTalon Left2 { get; private set; }
-        public static CANTalon Shooter { get; private set; }
+        public static CANTalon Collector { get; private set; }
         public static PowerDistributionPanel PDP { get; private set; }
         public static Compressor PCM { get; private set; }
         public static RobotDrive DriveTrain { get; private set; }
@@ -30,20 +30,20 @@ namespace CoconutsFrc2017.Core
             Right2.SafetyEnabled = false;
             Right2.ClearStickyFaults();
 
-            Left1 = new CANTalon(1);
+            Left1 = new CANTalon(10);
             Left1.SafetyEnabled = false;
             Left1.Inverted = true;
             Left1.ClearStickyFaults();
 
-            Left2 = new CANTalon(8);
+            Left2 = new CANTalon(9);
             Left2.SafetyEnabled = false;
             Left2.Inverted = true;
             Left2.ClearStickyFaults();
 
-            Shooter = new CANTalon(2);
-            Shooter.SafetyEnabled = false;
-            Shooter.Inverted = true;
-            Shooter.ClearStickyFaults();
+            Collector = new CANTalon(1);
+            Collector.SafetyEnabled = false;
+            Collector.Inverted = true;
+            Collector.ClearStickyFaults();
 
             PDP = new PowerDistributionPanel();
             PDP.ClearStickyFaults();
