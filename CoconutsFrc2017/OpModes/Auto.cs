@@ -7,7 +7,8 @@ namespace CoconutsFrc2017.OpModes
     {
         protected override void Init()
         {
-            Auto auto = new Auto();
+            Autonomous.Handler AutoHandler = new Autonomous.Handler();
+            AutoHandler.RunAuto(Autonomous.Handler.AutoPosition.Position1);
         }
 
         protected override void Main()

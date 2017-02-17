@@ -23,7 +23,7 @@ namespace CoconutsFrc2017.OpModes.Autonomous
             Position3 = 3
         }
 
-        public AutoMode GetAuto(AutoPosition mode)
+        private AutoMode GetAuto(AutoPosition mode)
         {
             if (mode == 0)                                                                         // Switches are not enabled.
                 return AutoMode.Disabled;

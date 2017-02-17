@@ -87,6 +87,7 @@
     <Compile Include="Core\Robot.cs" />
     <Compile Include="Core\RobotConfig.cs" />
     <Compile Include="Core\RobotMap.cs" />
+    <Compile Include="Functions\AutoFunctions.cs" />
     <Compile Include="OpModes\Auto.cs" />
     <Compile Include="OpModes\Autonomous\Handler.cs" />
     <Compile Include="OpModes\Autonomous\Modes\IAuto.cs" />
