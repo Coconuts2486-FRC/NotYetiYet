@@ -97,6 +97,7 @@
     <Compile Include="OpModes\Disabled.cs" />
     <Compile Include="OpModes\TeleOp.cs" />
     <Compile Include="OpModes\Test.cs" />
+    <Compile Include="Other\DriveTrain.cs" />
     <Compile Include="Other\ObjectDetector.cs" />
     <Compile Include="Other\PixyLibs\Block.cs" />
     <Compile Include="Other\PixyLibs\BlockArray.cs" />

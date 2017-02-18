@@ -14,17 +14,32 @@ namespace CoconutsFrc2017.OpModes
         {
             while (true)
             {
-                DriveTrain.TankDrive(DriveLeft.GetY(), -DriveRight.GetY());
+                DriveTrain.TankDrive(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
 
-                if (DriveLeft.GetY() < -0.1 || DriveRight.GetY() < -0.1) Collector.Set(1);
-                else Collector.Set(0);
-                
+                if ((DriveStick_Left.GetRawAxis(1) < -0.1 || DriveStick_Right.GetRawAxis(1) < -0.1) && !Custom_Board.GetRawButton(4))
+                {
+                    Intake1.Set(-1);
+                    Intake2.Set(-1);
+                }
+
+                else
+                {
+                    Intake1.Set(0);
+                    Intake2.Set(0);
+                }
+
+                if (Custom_Board.GetRawButton(4)) Shooter.Set(1);
+                else Shooter.Set(0);
+
+                Shooter_Pivot.Set(.5 * Custom_Board.GetRawAxis(4));
+
+                Snooze(10);
             }
         }
 
-
         protected override void End()
         {
+            Stop();
         }
     }
 }
