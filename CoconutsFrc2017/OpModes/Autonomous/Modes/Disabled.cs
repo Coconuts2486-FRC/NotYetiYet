@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading;
 
 namespace CoconutsFrc2017.OpModes.Autonomous.Modes
 {
     public class Disabled : IAuto
     {
+        /// <summary>
+        /// Runs the disabled autonomous.
+        /// Does nothing. Meant for if something catastrophic occurs.
+        /// Compatible with anywhere.
+        /// </summary>
         public void Run()
         {
-            throw new NotImplementedException();
+            // Sleeps for 15 seconds.
+            Thread.Sleep(15000);
         }
     }
 }
