@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace CoconutsFrc2017.OpModes.Autonomous.Modes
+namespace CoconutsFrc2017
 {
     public class Disabled : IAuto
     {

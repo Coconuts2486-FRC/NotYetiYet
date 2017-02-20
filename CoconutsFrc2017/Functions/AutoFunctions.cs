@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoconutsFrc2017.Functions
+namespace CoconutsFrc2017
 {
     static class AutoFunctions
     {

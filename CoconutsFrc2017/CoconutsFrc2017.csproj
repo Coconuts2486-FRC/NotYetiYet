@@ -36,31 +36,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ChadDotNet">
-      <HintPath>packages\ChadDotNet.dll</HintPath>
-    </Reference>
-    <Reference Include="FRC.CameraServer, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.CameraServer.1.0.1\lib\net45\FRC.CameraServer.dll</HintPath>
+    <Reference Include="ChadDotNet, Version=2016.0.0.55, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ChadNet.1.0.0\lib\net452\ChadDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FRC.HAL.DesktopLibraries, Version=2017.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.FRC.HAL.DesktopLibraries.2017.0.3\lib\net451\FRC.HAL.DesktopLibraries.dll</HintPath>
+    <Reference Include="FRC.CameraServer, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.CameraServer.1.0.2\lib\net45\FRC.CameraServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FRC.HAL.DesktopLibraries, Version=2017.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.FRC.HAL.DesktopLibraries.2017.1.0\lib\net451\FRC.HAL.DesktopLibraries.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FRC.NetworkTables.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.NetworkTables.Core.3.1.7\lib\net45\FRC.NetworkTables.Core.dll</HintPath>
+      <HintPath>packages\FRC.NetworkTables.Core.3.1.8\lib\net45\FRC.NetworkTables.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FRC.OpenCvSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.OpenCvSharp.1.0.1\lib\net45\FRC.OpenCvSharp.dll</HintPath>
+      <HintPath>packages\FRC.OpenCvSharp.1.0.3\lib\net45\FRC.OpenCvSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FRC.WPILib.CTRE, Version=2017.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\FRC.WPILib.CTRE.2017.0.2\lib\net451\FRC.WPILib.CTRE.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HAL, Version=2017.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.WPILib.Extras.2017.0.3\lib\net451\HAL.dll</HintPath>
+    <Reference Include="HAL, Version=2017.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.WPILib.Extras.2017.1.0\lib\net451\HAL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NativeLibraryUtilities, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -74,12 +75,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WPILib, Version=2017.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.WPILib.2017.0.3\lib\net451\WPILib.dll</HintPath>
+    <Reference Include="WPILib, Version=2017.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.WPILib.2017.1.0\lib\net451\WPILib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WPILib.Extras, Version=2017.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\FRC.WPILib.Extras.2017.0.3\lib\net451\WPILib.Extras.dll</HintPath>
+    <Reference Include="WPILib.Extras, Version=2017.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\FRC.WPILib.Extras.2017.1.0\lib\net451\WPILib.Extras.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -89,12 +90,13 @@
     <Compile Include="Core\RobotMap.cs" />
     <Compile Include="Functions\AutoFunctions.cs" />
     <Compile Include="OpModes\Auto.cs" />
+    <Compile Include="OpModes\EmergencyMode.cs" />
     <Compile Include="OpModes\Autonomous\Handler.cs" />
     <Compile Include="OpModes\Autonomous\Modes\IAuto.cs" />
     <Compile Include="OpModes\Autonomous\Modes\Blue.cs" />
     <Compile Include="OpModes\Autonomous\Modes\Disabled.cs" />
     <Compile Include="OpModes\Autonomous\Modes\Red.cs" />
-    <Compile Include="OpModes\Disabled.cs" />
+    <Compile Include="OpModes\Disable.cs" />
     <Compile Include="OpModes\TeleOp.cs" />
     <Compile Include="OpModes\Test.cs" />
     <Compile Include="Other\DriveTrain.cs" />

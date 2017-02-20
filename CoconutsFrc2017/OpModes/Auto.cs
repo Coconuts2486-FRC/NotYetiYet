@@ -1,14 +1,14 @@
-﻿using ChadDotNet.System;
-using static CoconutsFrc2017.Core.RobotMap;
+﻿using ChadDotNet;
+using static CoconutsFrc2017.RobotMap;
 
-namespace CoconutsFrc2017.OpModes
+namespace CoconutsFrc2017
 {
     public class Auto : OperationMode
     {
         protected override void Init()
         {
-            Autonomous.Handler AutoHandler = new Autonomous.Handler();
-            AutoHandler.RunAuto(Autonomous.Handler.AutoPosition.Position1);
+            Handler AutoHandler = new Handler();
+            AutoHandler.RunAuto(Handler.AutoPosition.Position1);
         }
 
         protected override void Main()

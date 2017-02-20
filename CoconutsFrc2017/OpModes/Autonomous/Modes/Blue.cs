@@ -1,11 +1,11 @@
-﻿using CoconutsFrc2017.Functions;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoconutsFrc2017.OpModes.Autonomous.Modes
+namespace CoconutsFrc2017
 {
     /// <summary>
     /// Runs the blue one autonomous.

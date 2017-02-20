@@ -1,32 +1,18 @@
 ﻿using System;
-using CoconutsFrc2017.OpModes;
-using ChadDotNet.System;
-using ChadDotNet.Network;
-using NativeLibraryUtilities;
-namespace CoconutsFrc2017.Core
+using ChadDotNet;
+
+namespace CoconutsFrc2017
 {
     public class Robot : ThreadedRobot
     {
-        protected override void init()
+        protected override void Init()
         {
-            try
-            {
-                RobotMap.Init();
-            }
-            catch (Exception e)
-            {
-                SmartConsole.PrintInfo(e.Message);
-                SmartConsole.PrintInfo(e.StackTrace);
-            }
-            
-        }
-
-        protected override void SetThreads()
-        {
-            TeleopThread = new TeleOp();
+            RobotMap.Init();
             AutonomousThread = new Auto();
+            DisabledThread = new Disable();
+            TeleopThread = new TeleOp();
             TestThread = new Test();
-            DisabledThread = new Disabled();
+
         }
     }
 }

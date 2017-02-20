@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoconutsFrc2017.Vision
+namespace CoconutsFrc2017
 {
     /// <summary>
     /// Class for running 

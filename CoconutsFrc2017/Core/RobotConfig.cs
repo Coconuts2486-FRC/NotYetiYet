@@ -1,7 +1,8 @@
 ﻿using System;
-using ChadDotNet.Etc;
+using ChadDotNet;
+using CoconutsFrc2017;
 
-namespace CoconutsFrc2017.Core
+namespace CoconutsFrc2017
 {
     public class RobotConfig : Config
     {
@@ -13,11 +14,11 @@ namespace CoconutsFrc2017.Core
             }
         }
 
-        public override Type RobotClass
+        public override AbstractRobot RobotClass
         {
             get
             {
-                return typeof(Robot);
+                return new Robot();
             }
         }
 
@@ -43,14 +44,6 @@ namespace CoconutsFrc2017.Core
                 splash[6] = "==============================";
                 return splash;
 
-            }
-        }
-
-        public override bool Verbose
-        {
-            get
-            {
-                return false;
             }
         }
 

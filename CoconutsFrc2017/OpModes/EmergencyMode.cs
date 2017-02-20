@@ -1,17 +1,20 @@
-﻿using ChadDotNet;
-using static CoconutsFrc2017.RobotMap;
+﻿using static CoconutsFrc2017.RobotMap;
+using ChadDotNet;
 
 namespace CoconutsFrc2017
 {
-    public class TeleOp : OperationMode
+    public class EmergencyMode : OperationMode
     {
+        protected override void End()
+        {
+            
+        }
 
         protected override void Init()
         {
         }
 
-        private bool flag = true;
-        private bool toggle = false;
+        bool flag = true;
 
         protected override void Main()
         {
@@ -50,7 +53,7 @@ namespace CoconutsFrc2017
                         Shifters.Set(!Shifters.Get());
 
                         flag = false;
-                        
+
                     }
                 }
 
@@ -58,11 +61,11 @@ namespace CoconutsFrc2017
                 {
                     flag = true;
                 }
-
-                if(DriveStick_Left.GetRawAxis(2) > 0.1)
+                if (DriveStick_Left.GetRawAxis(2) > 0.1)
                 {
                     PTO.Set(true);
                 }
+
                 else
                 {
                     PTO.Set(false);
@@ -72,11 +75,6 @@ namespace CoconutsFrc2017
 
                 Snooze(10);
             }
-        }
-
-        protected override void End()
-        {
-            Stop();
         }
     }
 }

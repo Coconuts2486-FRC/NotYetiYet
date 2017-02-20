@@ -1,9 +1,8 @@
-﻿using ChadDotNet.System;
-using static CoconutsFrc2017.Core.RobotMap;
+﻿using ChadDotNet;
 
-namespace CoconutsFrc2017.OpModes
+namespace CoconutsFrc2017
 {
-    public class Disabled : OperationMode
+    public class Disable : OperationMode
     {
         protected override void End()
         {

@@ -3,7 +3,7 @@ using CTRE;
 using WPILib.Interfaces;
 using System;
 
-namespace CoconutsFrc2017.Core
+namespace CoconutsFrc2017
 {
     public static class RobotMap
     {
@@ -15,6 +15,9 @@ namespace CoconutsFrc2017.Core
         public static CANTalon Intake1 { get { return can_06; } }
         public static CANTalon Intake2 { get { return can_07; } }
         public static CANTalon Shooter { get { return can_08; } }
+        public static CANTalon Adjetator { get { return can_10; } }
+        public static Solenoid Shifters { get { return pcm_11_1; } }
+        public static Solenoid PTO { get { return pcm_11_2; } }
         public static Joystick DriveStick_Left { get { return usb_0; } }
         public static Joystick DriveStick_Right { get { return usb_1; } }
         public static Joystick Custom_Board { get { return usb_2; } }
@@ -34,6 +37,9 @@ namespace CoconutsFrc2017.Core
             can_10 = new CANTalon(10);
             can_11 = new Compressor(11);
             can_12 = new PowerDistributionPanel(12);
+            pcm_11_0 = new Solenoid(11, 0);
+            pcm_11_1 = new Solenoid(11, 1);
+            pcm_11_2 = new Solenoid(11, 2);
             usb_0 = new Joystick(0);
             usb_1 = new Joystick(1);
             usb_2 = new Joystick(2);
@@ -63,6 +69,7 @@ namespace CoconutsFrc2017.Core
             can_09.SafetyEnabled = false;
             can_10.SafetyEnabled = false;
             sw_0.SafetyEnabled = false;
+            
 
             Intake1.Inverted = true;
         }
@@ -94,6 +101,9 @@ namespace CoconutsFrc2017.Core
         private static CANTalon can_10;
         private static Compressor can_11;
         private static PowerDistributionPanel can_12;
+        private static Solenoid pcm_11_0;
+        private static Solenoid pcm_11_1;
+        private static Solenoid pcm_11_2;
         private static Joystick usb_0;
         private static Joystick usb_1;
         private static Joystick usb_2;

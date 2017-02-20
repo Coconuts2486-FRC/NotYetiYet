@@ -1,6 +1,6 @@
-﻿using CoconutsFrc2017.OpModes.Autonomous.Modes;
+﻿using CoconutsFrc2017;
 
-namespace CoconutsFrc2017.OpModes.Autonomous
+namespace CoconutsFrc2017
 {
     class Handler
     {
@@ -38,7 +38,7 @@ namespace CoconutsFrc2017.OpModes.Autonomous
             switch (GetAuto(position))
             {
                 case AutoMode.Disabled:
-                    auto = new Modes.Disabled();
+                    auto = new Disabled();
                     break;
                 case AutoMode.Red1:
                     auto = new Red1();
@@ -59,7 +59,7 @@ namespace CoconutsFrc2017.OpModes.Autonomous
                     auto = new Blue3();
                     break;
                 default:
-                    auto = new Modes.Disabled();
+                    auto = new Disabled();
                     break;
             }
             auto.Run();

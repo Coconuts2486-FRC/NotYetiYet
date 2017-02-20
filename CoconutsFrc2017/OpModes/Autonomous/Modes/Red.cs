@@ -1,7 +1,6 @@
 ﻿using System;
-using CoconutsFrc2017.Functions;
 
-namespace CoconutsFrc2017.OpModes.Autonomous.Modes
+namespace CoconutsFrc2017
 {
     /// <summary>
     /// Runs the red one autonomous.
