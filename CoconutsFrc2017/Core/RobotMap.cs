@@ -23,6 +23,7 @@ namespace CoconutsFrc2017
         public static Joystick Custom_Board { get { return usb_2; } }
         public static RobotDrive DriveTrain { get { return sw_0; } }
 
+
         public static void Init()
         {
             can_01 = new CANTalon(1);
@@ -70,8 +71,9 @@ namespace CoconutsFrc2017
             can_10.SafetyEnabled = false;
             sw_0.SafetyEnabled = false;
             
-
             Intake1.Inverted = true;
+
+            CameraServer.Instance.StartAutomaticCapture();
         }
 
         public static void Stop()

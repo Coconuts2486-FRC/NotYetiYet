@@ -1,5 +1,5 @@
-﻿using ChadDotNet.System;
-using CoconutsFrc2017.Core;
+﻿using ChadDotNet;
+using CoconutsFrc2017;
 
 namespace CoconutsFrc2017
 {
