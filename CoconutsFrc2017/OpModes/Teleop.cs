@@ -19,7 +19,7 @@ namespace CoconutsFrc2017
             {
                 DriveTrain.TankDrive(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
 
-                if ((DriveStick_Left.GetRawAxis(1) < -0.1 || DriveStick_Right.GetRawAxis(1) < -0.1) && !Custom_Board.GetRawButton(4))
+                if (((DriveStick_Left.GetRawAxis(1) < -0.1 || DriveStick_Right.GetRawAxis(1) < -0.1) && !Custom_Board.GetRawButton(4)) || Custom_Board.GetRawButton(2))
                 {
                     Intake1.Set(-1);
                     Intake2.Set(-1);
@@ -33,8 +33,14 @@ namespace CoconutsFrc2017
 
                 if (Custom_Board.GetRawButton(4))
                 {
-                    Shooter.Set(.9);
+                    Shooter.Set(1);
                     Adjetator.Set(1);
+                }
+
+                else if (Custom_Board.GetRawButton(1))
+                {
+                    Shooter.Set(1);
+                    Adjetator.Set(-1);
                 }
 
                 else
@@ -59,15 +65,9 @@ namespace CoconutsFrc2017
                     flag = true;
                 }
 
-                if(DriveStick_Left.GetRawAxis(2) > 0.1)
-                {
-                    PTO.Set(true);
-                }
-                else
-                {
-                    PTO.Set(false);
-                }
-
+                if(DriveStick_Left.GetRawAxis(2) > 0.1) PTO.Set(true);
+                else PTO.Set(false);
+                
                 Shooter_Pivot.Set(.5 * Custom_Board.GetRawAxis(4));
 
                 Snooze(10);

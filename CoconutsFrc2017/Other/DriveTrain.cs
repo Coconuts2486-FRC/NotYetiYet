@@ -13,10 +13,23 @@ namespace CoconutsFrc2017.Other
             
         }
 
+        public void Move(double left, double right)
+        {
+            if (Lock)
+            {
+
+            }
+
+            else
+            {
+                TankDrive(left, right);
+            }
+        }
+
+        public bool Lock { set; get; } = false;
+
         public void PidWrite(double value)
         {
-            //TODO: smith fix
-            throw new NotImplementedException();
         }
     }
 }
