@@ -72,6 +72,7 @@ namespace CoconutsFrc2017
             sw_0.SafetyEnabled = false;
             
             Intake1.Inverted = true;
+            Adjetator.Inverted = true;
 
             CameraServer.Instance.StartAutomaticCapture();
         }
