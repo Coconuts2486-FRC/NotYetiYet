@@ -33,8 +33,14 @@ namespace CoconutsFrc2017
 
                 if (Custom_Board.GetRawButton(4))
                 {
-                    Shooter.Set(.9);
+                    Shooter.Set(1);
                     Adjetator.Set(1);
+                }
+
+                else if (Custom_Board.GetRawButton(1))
+                {
+                    Shooter.Set(1);
+                    Adjetator.Set(-1);
                 }
 
                 else
