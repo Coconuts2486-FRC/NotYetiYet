@@ -18,13 +18,13 @@ namespace CoconutsFrc2017
         public static CANTalon Intake1          { get { return can_06; } }
         public static CANTalon Intake2          { get { return can_07; } }
         public static CANTalon Shooter          { get { return can_08; } }
-        public static CANTalon Adjetator        { get { return can_10; } }
+        public static CANTalon Agitator         { get { return can_10; } }
         public static Solenoid Shifters         { get { return pcm_11_1; } }
         public static Solenoid PTO              { get { return pcm_11_2; } }
         public static Joystick DriveStick_Left  { get { return usb_0; } }
         public static Joystick DriveStick_Right { get { return usb_1; } }
         public static Joystick Custom_Board     { get { return usb_2; } }
-        public static RobotDrive DriveTrain     { get { return sw_0; } }
+        public static DriveTrainObject DriveTrain     { get { return sw_0; } }
 
         public static void Init()
         {
@@ -46,7 +46,7 @@ namespace CoconutsFrc2017
             usb_0 = new Joystick(0);
             usb_1 = new Joystick(1);
             usb_2 = new Joystick(2);
-            sw_0 = new RobotDrive(Left1, Left2, Right1, Right2);
+            sw_0 = new DriveTrainObject(Left1, Left2, Right1, Right2);
 
             can_01.ClearStickyFaults();
             can_02.ClearStickyFaults();
@@ -74,7 +74,7 @@ namespace CoconutsFrc2017
             sw_0.SafetyEnabled   = false;
             
             Intake1.Inverted = true;
-            Adjetator.Inverted = true;
+            Agitator.Inverted = true;
 
             CameraServer.Instance.StartAutomaticCapture();
 
@@ -122,7 +122,7 @@ namespace CoconutsFrc2017
         private static Joystick usb_1;
         private static Joystick usb_2;
 
-        private static RobotDrive sw_0;
+        private static DriveTrainObject sw_0;
 
         public static AHRS NavX;
         public static TurningPID TurnController;

@@ -17,7 +17,7 @@ namespace CoconutsFrc2017
         {
             while (true)
             {
-                DriveTrain.TankDrive(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
+                DriveTrain.Move(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
 
                 if (((DriveStick_Left.GetRawAxis(1) < -0.1 || DriveStick_Right.GetRawAxis(1) < -0.1) && !Custom_Board.GetRawButton(4)) || Custom_Board.GetRawButton(2))
                 {
@@ -34,19 +34,19 @@ namespace CoconutsFrc2017
                 if (Custom_Board.GetRawButton(4))
                 {
                     Shooter.Set(1);
-                    Adjetator.Set(1);
+                    Agitator.Set(1);
                 }
 
                 else if (Custom_Board.GetRawButton(1))
                 {
                     Shooter.Set(1);
-                    Adjetator.Set(-1);
+                    Agitator.Set(-1);
                 }
 
                 else
                 {
                     Shooter.Set(0);
-                    Adjetator.Set(0);
+                    Agitator.Set(0);
                 }
 
                 if (DriveStick_Left.GetRawButton(1) || DriveStick_Right.GetRawButton(1))

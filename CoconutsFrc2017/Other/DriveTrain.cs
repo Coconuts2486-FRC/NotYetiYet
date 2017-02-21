@@ -2,16 +2,13 @@
 using WPILib;
 using WPILib.Interfaces;
 
-namespace CoconutsFrc2017.Other
+namespace CoconutsFrc2017
 {
-    public class DriveTrain : RobotDrive, IPIDOutput
+    public class DriveTrainObject : RobotDrive
     {
 
-        public DriveTrain(ISpeedController frontLeftMotor, ISpeedController rearLeftMotor,
-                      ISpeedController frontRightMotor, ISpeedController rearRightMotor) : base(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor)
-        {
-            
-        }
+        public DriveTrainObject(ISpeedController frontLeftMotor, ISpeedController rearLeftMotor, ISpeedController frontRightMotor, ISpeedController rearRightMotor)
+            : base(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor) { }
 
         public void Move(double left, double right)
         {
@@ -27,9 +24,5 @@ namespace CoconutsFrc2017.Other
         }
 
         public bool Lock { set; get; } = false;
-
-        public void PidWrite(double value)
-        {
-        }
     }
 }
