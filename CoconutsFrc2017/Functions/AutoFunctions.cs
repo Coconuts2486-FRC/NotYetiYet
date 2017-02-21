@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoconutsFrc2017
 {
@@ -37,9 +33,18 @@ namespace CoconutsFrc2017
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Drive to the desired angle.
+        /// </summary>
+        /// <param name="desiredAngle">Desired angle from -180 to 180.</param>
         public static void TurnToAngle(double desiredAngle)
         {
-
+            RobotMap.TurnController.Controller.Setpoint = desiredAngle;
+            while (!RobotMap.TurnController.Controller.OnTarget())
+            {
+                RobotMap.TurnController.Controller.Enable();
+            }
+            RobotMap.TurnController.Controller.Disable();
         }
 
         /// <summary>

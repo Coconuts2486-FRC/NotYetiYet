@@ -1,4 +1,6 @@
-﻿using CoconutsFrc2017;
+﻿using ChadDotNet;
+using CoconutsFrc2017;
+using WPILib.SmartDashboard;
 
 namespace CoconutsFrc2017
 {
@@ -34,6 +36,7 @@ namespace CoconutsFrc2017
 
         public void RunAuto(AutoPosition position)
         {
+            SmartDashboard.PutNumber("Hello World!", 123);
             IAuto auto;
             switch (GetAuto(position))
             {
@@ -62,6 +65,7 @@ namespace CoconutsFrc2017
                     auto = new Disabled();
                     break;
             }
+            SmartConsole.PrintInfo("You are currently running " + auto.GetType().Name + ". Have a great match! :)");
             auto.Run();
         }
     }

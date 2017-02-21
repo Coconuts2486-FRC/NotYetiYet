@@ -2,27 +2,29 @@
 using CTRE;
 using WPILib.Interfaces;
 using System;
+using WPILib.Extras.NavX;
+using CoconutsFrc2017.Functions;
+using WPILib.LiveWindow;
 
 namespace CoconutsFrc2017
 {
     public static class RobotMap
     {
-        public static CANTalon Right1 { get { return can_01; } }
-        public static CANTalon Right2 { get { return can_02; } }
-        public static CANTalon Left1 { get { return can_03; } }
-        public static CANTalon Left2 { get { return can_04; } }
-        public static CANTalon Shooter_Pivot { get { return can_05; } }
-        public static CANTalon Intake1 { get { return can_06; } }
-        public static CANTalon Intake2 { get { return can_07; } }
-        public static CANTalon Shooter { get { return can_08; } }
-        public static CANTalon Adjetator { get { return can_10; } }
-        public static Solenoid Shifters { get { return pcm_11_1; } }
-        public static Solenoid PTO { get { return pcm_11_2; } }
-        public static Joystick DriveStick_Left { get { return usb_0; } }
+        public static CANTalon Right1           { get { return can_01; } }
+        public static CANTalon Right2           { get { return can_02; } }
+        public static CANTalon Left1            { get { return can_03; } }
+        public static CANTalon Left2            { get { return can_04; } }
+        public static CANTalon Shooter_Pivot    { get { return can_05; } }
+        public static CANTalon Intake1          { get { return can_06; } }
+        public static CANTalon Intake2          { get { return can_07; } }
+        public static CANTalon Shooter          { get { return can_08; } }
+        public static CANTalon Adjetator        { get { return can_10; } }
+        public static Solenoid Shifters         { get { return pcm_11_1; } }
+        public static Solenoid PTO              { get { return pcm_11_2; } }
+        public static Joystick DriveStick_Left  { get { return usb_0; } }
         public static Joystick DriveStick_Right { get { return usb_1; } }
-        public static Joystick Custom_Board { get { return usb_2; } }
-        public static RobotDrive DriveTrain { get { return sw_0; } }
-
+        public static Joystick Custom_Board     { get { return usb_2; } }
+        public static RobotDrive DriveTrain     { get { return sw_0; } }
 
         public static void Init()
         {
@@ -69,11 +71,17 @@ namespace CoconutsFrc2017
             can_08.SafetyEnabled = false;
             can_09.SafetyEnabled = false;
             can_10.SafetyEnabled = false;
-            sw_0.SafetyEnabled = false;
+            sw_0.SafetyEnabled   = false;
             
             Intake1.Inverted = true;
 
             CameraServer.Instance.StartAutomaticCapture();
+
+            NavX = new AHRS(SPI.Port.MXP);
+            TurnController = new TurningPID(PIDFValues.kP, PIDFValues.kI, PIDFValues.kD, PIDFValues.kF);
+            TurnController.Controller.SetAbsoluteTolerance(0.02);
+
+            LiveWindow.AddActuator("PID Turn Controller", "PID Output", TurnController.Controller);
         }
 
         public static void Stop()
@@ -101,14 +109,21 @@ namespace CoconutsFrc2017
         private static CANTalon can_08;
         private static CANTalon can_09;
         private static CANTalon can_10;
+
         private static Compressor can_11;
         private static PowerDistributionPanel can_12;
+
         private static Solenoid pcm_11_0;
         private static Solenoid pcm_11_1;
         private static Solenoid pcm_11_2;
+
         private static Joystick usb_0;
         private static Joystick usb_1;
         private static Joystick usb_2;
+
         private static RobotDrive sw_0;
+
+        public static AHRS NavX;
+        public static TurningPID TurnController;
     }
 }

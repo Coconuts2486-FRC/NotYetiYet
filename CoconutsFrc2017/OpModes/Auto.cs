@@ -1,5 +1,4 @@
 ﻿using ChadDotNet;
-using static CoconutsFrc2017.RobotMap;
 
 namespace CoconutsFrc2017
 {
@@ -8,7 +7,7 @@ namespace CoconutsFrc2017
         protected override void Init()
         {
             Handler AutoHandler = new Handler();
-            AutoHandler.RunAuto(Handler.AutoPosition.Position1);
+            AutoHandler.RunAuto(Handler.AutoPosition.Disabled);
         }
 
         protected override void Main()
