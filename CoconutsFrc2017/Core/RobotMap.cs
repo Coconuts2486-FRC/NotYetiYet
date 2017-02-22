@@ -72,8 +72,9 @@ namespace CoconutsFrc2017
             can_09.SafetyEnabled = false;
             can_10.SafetyEnabled = false;
             sw_0.SafetyEnabled   = false;
-            
-            Intake1.Inverted = true;
+
+            Intake2.Inverted = true;
+            Shooter_Pivot.Inverted = true;
             Agitator.Inverted = true;
 
             CameraServer.Instance.StartAutomaticCapture();

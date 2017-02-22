@@ -1,4 +1,5 @@
 ﻿using ChadDotNet;
+using System;
 using static CoconutsFrc2017.RobotMap;
 
 namespace CoconutsFrc2017
@@ -10,8 +11,9 @@ namespace CoconutsFrc2017
         {
         }
 
-        private bool flag = true;
-        private bool toggle = false;
+        private bool toggle = true;
+        private bool started = false;
+        private long time;
 
         protected override void Main()
         {
@@ -19,7 +21,13 @@ namespace CoconutsFrc2017
             {
                 DriveTrain.Move(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
 
-                if (((DriveStick_Left.GetRawAxis(1) < -0.1 || DriveStick_Right.GetRawAxis(1) < -0.1) && !Custom_Board.GetRawButton(4)) || Custom_Board.GetRawButton(2))
+                if (Custom_Board.GetRawAxis(2) > 0.1)
+                {
+                    Intake1.Set(1);
+                    Intake2.Set(1);
+                }
+
+                else if (DriveStick_Right.GetRawButton(3))
                 {
                     Intake1.Set(-1);
                     Intake2.Set(-1);
@@ -27,42 +35,71 @@ namespace CoconutsFrc2017
 
                 else
                 {
-                    Intake1.Set(0);
-                    Intake2.Set(0);
+                    if (Custom_Board.GetRawButton(3))
+                    {
+                        if (started)
+                        {
+                            if ((Environment.TickCount - time) > 1000)
+                            {
+                                Intake1.Set(1);
+                                Intake2.Set(1);
+                                Agitator.Set(1);
+                            }
+                        }
+
+                        else
+                        {
+                            time = Environment.TickCount;
+                            started = true;
+                            Shooter.Set(1);
+                        }
+                    }
+
+                    else if (Custom_Board.GetRawButton(2))
+                    {
+                        if (started)
+                        {
+                            if ((Environment.TickCount - time) > 1000)
+                            {
+                                Intake1.Set(1);
+                                Intake2.Set(1);
+                                Agitator.Set(-1);
+                            }
+                        }
+
+                        else
+                        {
+                            time = Environment.TickCount;
+                            started = true;
+                            Shooter.Set(1);
+                        }
+                    }
+
+                    else
+                    {
+                        Shooter.Set(0);
+                        Agitator.Set(0);
+                        Intake1.Set(0);
+                        Intake2.Set(0);
+                        started = false;
+                    }
                 }
 
-                if (Custom_Board.GetRawButton(4))
-                {
-                    Shooter.Set(1);
-                    Agitator.Set(1);
-                }
-
-                else if (Custom_Board.GetRawButton(1))
-                {
-                    Shooter.Set(1);
-                    Agitator.Set(-1);
-                }
-
-                else
-                {
-                    Shooter.Set(0);
-                    Agitator.Set(0);
-                }
-
+                
                 if (DriveStick_Left.GetRawButton(1) || DriveStick_Right.GetRawButton(1))
                 {
-                    if (flag)
+                    if (toggle)
                     {
                         Shifters.Set(!Shifters.Get());
 
-                        flag = false;
+                        toggle = false;
                         
                     }
                 }
 
                 else
                 {
-                    flag = true;
+                    toggle = true;
                 }
 
                 if(DriveStick_Left.GetRawAxis(2) > 0.1) PTO.Set(true);
