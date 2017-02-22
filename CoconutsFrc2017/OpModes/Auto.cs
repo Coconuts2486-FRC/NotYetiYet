@@ -4,15 +4,15 @@ namespace CoconutsFrc2017
 {
     public class Auto : OperationMode
     {
+        Handler AutoHandler;
         protected override void Init()
         {
-            Handler AutoHandler = new Handler();
-            AutoHandler.RunAuto(Handler.AutoPosition.Disabled);
+            AutoHandler = new Handler();
         }
 
         protected override void Main()
         {
-
+            AutoHandler.RunAuto(Handler.AutoPosition.Position1);
         }
 
         protected override void End()

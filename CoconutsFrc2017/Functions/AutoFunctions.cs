@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ChadDotNet;
+using System;
+using WPILib;
+using WPILib.SmartDashboard;
 
 namespace CoconutsFrc2017
 {
@@ -40,9 +43,9 @@ namespace CoconutsFrc2017
         public static void TurnToAngle(double desiredAngle)
         {
             RobotMap.TurnController.Controller.Setpoint = desiredAngle;
-            while (!RobotMap.TurnController.Controller.OnTarget())
+            RobotMap.TurnController.Controller.Enable();
+            while (RobotMap.TurnController.Controller.OnTarget() == false)
             {
-                RobotMap.TurnController.Controller.Enable();
             }
             RobotMap.TurnController.Controller.Disable();
         }

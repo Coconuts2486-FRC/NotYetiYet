@@ -8,7 +8,7 @@ using WPILib.Interfaces;
 
 namespace CoconutsFrc2017.Functions
 {
-    public class TurningPID : IPIDOutput
+    public class TurningPID : IPIDOutput, IDataSource
     {
         public PIDController Controller;
 
@@ -21,8 +21,14 @@ namespace CoconutsFrc2017.Functions
 
                 Controller.SetInputRange(-180f, 180f);
                 Controller.SetOutputRange(-0.45, 0.45);
+                Controller.SetAbsoluteTolerance(10);
             }
             catch (Exception ex) { DriverStation.ReportError(ex.Message, true); }
+        }
+
+        public double GetData()
+        {
+            return RobotMap.NavX.GetYaw();
         }
 
         public void PidWrite(double value)

@@ -6,7 +6,6 @@ namespace CoconutsFrc2017
 {
     public class DriveTrainObject : RobotDrive
     {
-
         public DriveTrainObject(ISpeedController frontLeftMotor, ISpeedController rearLeftMotor, ISpeedController frontRightMotor, ISpeedController rearRightMotor)
             : base(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor) { }
 

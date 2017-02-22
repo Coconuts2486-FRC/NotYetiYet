@@ -89,6 +89,7 @@
     <Compile Include="Core\RobotConfig.cs" />
     <Compile Include="Core\RobotMap.cs" />
     <Compile Include="Functions\AutoFunctions.cs" />
+    <Compile Include="Functions\DataLogger.cs" />
     <Compile Include="Functions\TurningPID.cs" />
     <Compile Include="OpModes\Auto.cs" />
     <Compile Include="OpModes\EmergencyMode.cs" />

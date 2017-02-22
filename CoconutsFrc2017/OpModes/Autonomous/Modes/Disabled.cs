@@ -1,4 +1,9 @@
-﻿using System.Threading;
+﻿using ChadDotNet;
+using NetworkTables;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
 namespace CoconutsFrc2017
 {
@@ -11,8 +16,6 @@ namespace CoconutsFrc2017
         /// </summary>
         public void Run()
         {
-            RobotMap.Left1.Set(1);
-            RobotMap.Left2.Set(1);
             // Sleeps for 15 seconds.
             Thread.Sleep(15000);
         }

@@ -20,7 +20,7 @@ namespace CoconutsFrc2017
         {
             while (true)
             {
-                DriveTrainObject.TankDrive(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
+                DriveTrain.TankDrive(-DriveStick_Left.GetRawAxis(1), -DriveStick_Right.GetRawAxis(1));
 
                 if ((DriveStick_Left.GetRawAxis(1) < -0.1 || DriveStick_Right.GetRawAxis(1) < -0.1) && !Custom_Board.GetRawButton(4))
                 {
