@@ -39,7 +39,7 @@ namespace CoconutsFrc2017
                     {
                         if (started)
                         {
-                            if ((Environment.TickCount - time) > 1000)
+                            if ((Environment.TickCount - time) > 400)
                             {
                                 Intake1.Set(1);
                                 Intake2.Set(1);
@@ -51,7 +51,7 @@ namespace CoconutsFrc2017
                         {
                             time = Environment.TickCount;
                             started = true;
-                            Shooter.Set(1);
+                            Shooter.Set(.8);
                         }
                     }
 
@@ -59,7 +59,7 @@ namespace CoconutsFrc2017
                     {
                         if (started)
                         {
-                            if ((Environment.TickCount - time) > 1000)
+                            if ((Environment.TickCount - time) > 400)
                             {
                                 Intake1.Set(1);
                                 Intake2.Set(1);
@@ -71,7 +71,7 @@ namespace CoconutsFrc2017
                         {
                             time = Environment.TickCount;
                             started = true;
-                            Shooter.Set(1);
+                            Shooter.Set(.8);
                         }
                     }
 
