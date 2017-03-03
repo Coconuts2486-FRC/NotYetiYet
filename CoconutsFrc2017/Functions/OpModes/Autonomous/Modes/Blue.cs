@@ -18,13 +18,9 @@ namespace CoconutsFrc2017
         {
             // Place the gear.
             AutoFunctions.Drive(1.6418);        // Drive forward 1.6418 meters.
-            SmartConsole.PrintInfo("Step one completed.");
             AutoFunctions.TurnToAngle(30);      // Turn to 30 degrees.
-            SmartConsole.PrintInfo("Step two completed.");
             AutoFunctions.Drive(0.96);          // Drive forward 0.96 meters to align at gear peg.
-            SmartConsole.PrintInfo("Step three completed.");
             AutoFunctions.PlaceGear();          // Place the gear. This might incorporate vision. Currently does not.
-            SmartConsole.PrintInfo("Step four completed.");
 
             // Drive to the boiler and shoot.
             AutoFunctions.Drive(-0.96);         // Drive 0.96 meters backwards away from gear peg.

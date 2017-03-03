@@ -34,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Documentation.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ChadDotNet, Version=2016.0.0.55, Culture=neutral, processorArchitecture=MSIL">
@@ -91,16 +92,16 @@
     <Compile Include="Functions\AutoFunctions.cs" />
     <Compile Include="Functions\DataLogger.cs" />
     <Compile Include="Functions\TurningPID.cs" />
-    <Compile Include="OpModes\Auto.cs" />
-    <Compile Include="OpModes\EmergencyMode.cs" />
-    <Compile Include="OpModes\Autonomous\Handler.cs" />
-    <Compile Include="OpModes\Autonomous\Modes\IAuto.cs" />
-    <Compile Include="OpModes\Autonomous\Modes\Blue.cs" />
-    <Compile Include="OpModes\Autonomous\Modes\Disabled.cs" />
-    <Compile Include="OpModes\Autonomous\Modes\Red.cs" />
-    <Compile Include="OpModes\Disable.cs" />
-    <Compile Include="OpModes\TeleOp.cs" />
-    <Compile Include="OpModes\Test.cs" />
+    <Compile Include="Functions\OpModes\Auto.cs" />
+    <Compile Include="Functions\OpModes\EmergencyMode.cs" />
+    <Compile Include="Functions\OpModes\Autonomous\Handler.cs" />
+    <Compile Include="Functions\OpModes\Autonomous\Modes\IAuto.cs" />
+    <Compile Include="Functions\OpModes\Autonomous\Modes\Blue.cs" />
+    <Compile Include="Functions\OpModes\Autonomous\Modes\Disabled.cs" />
+    <Compile Include="Functions\OpModes\Autonomous\Modes\Red.cs" />
+    <Compile Include="Functions\OpModes\Disable.cs" />
+    <Compile Include="Functions\OpModes\TeleOp.cs" />
+    <Compile Include="Functions\OpModes\Test.cs" />
     <Compile Include="Other\DriveTrain.cs" />
     <Compile Include="Other\ObjectDetector.cs" />
     <Compile Include="Other\PixyLibs\Block.cs" />
