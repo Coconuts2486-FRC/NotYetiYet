@@ -1,4 +1,5 @@
-﻿using CTRE;
+﻿using CoconutsFrc2017.Functions;
+using CTRE;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -49,6 +50,12 @@ namespace CoconutsFrc2017
         public static void SetVelocity(double rpm, CANTalon talon)
         {
             talon.Set(rpm);
+        }
+
+        public static void SetTurntable(int position)
+        {
+            RobotMap.TurntableController.Controller.Setpoint = position;
+            RobotMap.TurntableController.Controller.Enable();
         }
 
         /// <summary>
@@ -272,6 +279,7 @@ namespace CoconutsFrc2017
     /// <summary>
     /// Parameters for positional control. This code is deprecated.
     /// </summary>
+    /// <remarks>Please use <see cref="EncoderParameters"/> instead.</remarks>
     [Obsolete("PositionParameters is deprecated, please use EncoderParameters instead.")]
     public struct PositionParameters
     {

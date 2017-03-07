@@ -11,9 +11,10 @@ namespace CoconutsFrc2017
         {
         }
 
-        private bool toggle = true;
+        private bool toggle  = true ;
         private bool started = false;
-        private long time;
+        private long time           ;
+        private int  encoderTicks   ;
 
         protected override void Main()
         {
@@ -104,7 +105,9 @@ namespace CoconutsFrc2017
 
                 if(DriveStick_Left.GetRawAxis(2) > 0.1) PTO.Set(true);
                 else PTO.Set(false);
-                
+
+                // Set the shooter pivot to a specific point based on the joysticks.
+                //TurntableController.Controller.Setpoint = ((encoderTicks + Custom_Board.GetRawAxis(4)) / 2);
                 Shooter_Pivot.Set(.5 * Custom_Board.GetRawAxis(4));
 
                 Snooze(10);

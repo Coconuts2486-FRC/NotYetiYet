@@ -8,6 +8,9 @@ using WPILib.LiveWindow;
 
 namespace CoconutsFrc2017
 {
+    /// <summary>
+    /// Class for holding all robot objects.
+    /// </summary>
     public static class RobotMap
     {
         // Properties for accessing motor devices.
@@ -93,6 +96,9 @@ namespace CoconutsFrc2017
         public static DriveTrainObject DriveTrain { get { return sw_0;     } }
         #endregion
 
+        /// <summary>
+        /// Initialize the controllers.
+        /// </summary>
         public static void Init()
         {
             // Instantiates all the hardware devices with the respective ports.
@@ -147,11 +153,11 @@ namespace CoconutsFrc2017
             can_09.SafetyEnabled = false;
             can_10.SafetyEnabled = false;
             sw_0.SafetyEnabled   = false;
+            #endregion
 
             Intake2.Inverted = true;
             Shooter_Pivot.Inverted = true;
-            #endregion
-
+            
             Intake1.Inverted = true;
             Agitator.Inverted = true;
 
@@ -175,10 +181,27 @@ namespace CoconutsFrc2017
             TurnController.Controller.SetAbsoluteTolerance(0.02);
 
             // Adds the PID controller to the Live Window for easier testing.
-            LiveWindow.AddActuator("PID Turn Controller", "PID Output", TurnController.Controller);
+            LiveWindow.AddActuator("PID Controllers", "Turn Control", TurnController.Controller);
+
+            // Creates a new copy of the turntable.
+            TurntableEncoder = new Encoder(8, 9);
+
+            // Creates a new copy of EncoderPID as a TurntableController.
+            TurntableController = new EncoderPID(Shooter_Pivot, TurntableEncoder, new PIDF
+            {
+                kP = 0.005,
+                kI = 0.000,
+                kD = 0.000,
+                kF = 0.000
+            });
+
+            // Adds the PID controller to the Live Window for easier testing.
+            LiveWindow.AddActuator("PID Controllers", "Turn Control", TurntableController.Controller);
         }
-        
-        // Stops all motors.
+
+        ///<summary>
+        ///Stops all motors.
+        ///</summary>
         public static void Stop()
         {
             can_01.Set(0);
@@ -220,8 +243,26 @@ namespace CoconutsFrc2017
 
         private static DriveTrainObject sw_0;
 
+        /// <summary>
+        /// The NavX 11-axis inertial measurement unit for reading acceleration,
+        /// heading, magnetic disturbances, temperature, and pressure.
+        /// </summary>
         public static AHRS NavX;
+
+        /// <summary>
+        /// The turning PID controller is for turning to a specific angle.
+        /// </summary>
         public static TurningPID TurnController;
+
+        /// <summary>
+        /// Encoder for accessing positional data about the turntable.
+        /// </summary>
+        public static Encoder TurntableEncoder;
+
+        /// <summary>
+        /// PID controller for the turntable.
+        /// </summary>
+        public static EncoderPID TurntableController;
         #endregion
     }
 }
