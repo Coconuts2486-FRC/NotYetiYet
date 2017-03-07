@@ -130,7 +130,7 @@ namespace CoconutsFrc2017
                     {
                         Device         = FeedbackDevice.CtreMagEncoderRelative,
                         ReverseSensor  = true,
-                        PIDFValues     = new Functions.PIDF
+                        PIDFValues     = new PIDF
                         {
                             kP = 0.02,
                             kI = 0.00,

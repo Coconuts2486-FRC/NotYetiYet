@@ -7,6 +7,10 @@ using System.Threading;
 
 namespace CoconutsFrc2017
 {
+    /// <summary>
+    /// Autonomous mode for doing nothing.
+    /// Enable this in case of emergency!
+    /// </summary>
     public class Disabled : IAuto
     {
         /// <summary>
@@ -16,6 +20,8 @@ namespace CoconutsFrc2017
         /// </summary>
         public void Run()
         {
+            RobotMap.Right1.Set(50);
+            RobotMap.Left1.Set(50);
             // Sleeps for 15 seconds.
             Thread.Sleep(15000);
         }

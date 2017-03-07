@@ -60,6 +60,11 @@ namespace CoconutsFrc2017
         /// </summary>
         public static CANTalon Shooter            { get { return can_08;   } }
         /// <summary>
+        /// Shooter intake motor.
+        /// Pulls balls into shooter.
+        /// </summary>
+        public static CANTalon IntakeStage2       { get { return can_09;   } }
+        /// <summary>
         /// Agitator motor.
         /// Plexiglass plates that spin on the inside of the bot to move balls around.
         /// </summary>
@@ -105,8 +110,12 @@ namespace CoconutsFrc2017
             #region InstantiateDevices
             can_01 = new CANTalon(1);
             can_02 = new CANTalon(2);
+            can_02.MotorControlMode = ControlMode.Follower;
+            can_02.Set(can_01.DeviceId);
             can_03 = new CANTalon(3);
             can_04 = new CANTalon(4);
+            can_04.MotorControlMode = ControlMode.Follower;
+            can_04.Set(can_03.DeviceId);
             can_05 = new CANTalon(5);
             can_06 = new CANTalon(6);
             can_07 = new CANTalon(7);
@@ -197,6 +206,9 @@ namespace CoconutsFrc2017
 
             // Adds the PID controller to the Live Window for easier testing.
             LiveWindow.AddActuator("PID Controllers", "Turn Control", TurntableController.Controller);
+
+            AutoFunctions.ConfigureTalon(can_01, ConfigureType.Position);
+            AutoFunctions.ConfigureTalon(can_02, ConfigureType.Position);
         }
 
         ///<summary>

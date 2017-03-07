@@ -45,6 +45,7 @@ namespace CoconutsFrc2017
                                 Intake1.Set(1);
                                 Intake2.Set(1);
                                 Agitator.Set(1);
+                                IntakeStage2.Set(1);
                             }
                         }
 
@@ -65,6 +66,7 @@ namespace CoconutsFrc2017
                                 Intake1.Set(1);
                                 Intake2.Set(1);
                                 Agitator.Set(-1);
+                                IntakeStage2.Set(1);
                             }
                         }
 

@@ -2,17 +2,33 @@
 
 namespace CoconutsFrc2017
 {
+    /// <summary>
+    /// Class for creating an autonomous handler.
+    /// </summary>
     public class Auto : OperationMode
     {
+        // Creates a private instance of AutoHandler for running the selected autonomous mode.
         Handler AutoHandler;
+
+        /// <summary>
+        /// Initializes the AutoHandler.
+        /// </summary>
         protected override void Init()
         {
+            // Instantiates AutoHandler.
             AutoHandler = new Handler();
+
+            RobotMap.Right1.SetEncoderPostition(0);
+            RobotMap.Left1 .SetEncoderPostition(0);
         }
 
+        /// <summary>
+        /// Runs the auto handler.
+        /// </summary>
         protected override void Main()
         {
-            AutoHandler.RunAuto(Handler.AutoPosition.Position1);
+            // Runs the selected autonomous.
+            AutoHandler.RunAuto(Handler.AutoPosition.Disabled);
         }
 
         protected override void End()
