@@ -60,10 +60,20 @@ namespace CoconutsFrc2017
         /// </summary>
         public static CANTalon Shooter            { get { return can_08;   } }
         /// <summary>
+        /// Fuel intake motor.
+        /// Used to bring fuel into the shooter from adjetator.
+        /// </summary>
+        public static CANTalon IntakeSecondStage  { get { return can_09; } }
+        /// <summary>
         /// Agitator motor.
         /// Plexiglass plates that spin on the inside of the bot to move balls around.
         /// </summary>
         public static CANTalon Agitator           { get { return can_10;   } }
+        /// <summary>
+        /// Solenoid for gear collection.
+        /// Above intake.
+        /// </summary>
+        public static Solenoid GearSlot           { get { return pcm_11_1; } }
         /// <summary>
         /// Solenoids for shifting the drive train into different gears.
         /// Located inside the gearbox.
@@ -156,7 +166,9 @@ namespace CoconutsFrc2017
             #endregion
 
             Intake2.Inverted = true;
-            Shooter_Pivot.Inverted = true;
+            Intake1.Inverted = true;
+            Shooter.Inverted = true;
+            //Shooter_Pivot.Inverted = true;
             
             Intake1.Inverted = true;
             Agitator.Inverted = true;
