@@ -18,8 +18,13 @@ namespace CoconutsFrc2017
             // Instantiates AutoHandler.
             AutoHandler = new Handler();
 
-            RobotMap.Right1.SetEncoderPostition(0);
-            RobotMap.Left1 .SetEncoderPostition(0);
+            //RobotMap.Right1.SetEncoderPostition(0);
+            RobotMap.Right1.ReverseOutput(true);
+            //RobotMap.Left1 .SetEncoderPostition(0);
+            //RobotMap.Right1.Setpoint = 0;
+            //RobotMap.Left1. Setpoint = 0;
+            //RobotMap.Left1.ReverseOutput(true);
+            RobotMap.NavX.Reset();
         }
 
         /// <summary>
@@ -33,7 +38,7 @@ namespace CoconutsFrc2017
 
         protected override void End()
         {
-            
+            //RobotMap.Left1.ReverseOutput(false);
         }
     }
 }

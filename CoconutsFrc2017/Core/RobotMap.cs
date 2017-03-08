@@ -110,12 +110,13 @@ namespace CoconutsFrc2017
             #region InstantiateDevices
             can_01 = new CANTalon(1);
             can_02 = new CANTalon(2);
-            can_02.MotorControlMode = ControlMode.Follower;
-            can_02.Set(can_01.DeviceId);
+            //can_02.MotorControlMode = ControlMode.Follower;
+            //can_02.Set(can_01.DeviceId);
+            //can_02.ReverseOutput(true);
             can_03 = new CANTalon(3);
             can_04 = new CANTalon(4);
-            can_04.MotorControlMode = ControlMode.Follower;
-            can_04.Set(can_03.DeviceId);
+            //can_04.MotorControlMode = ControlMode.Follower;
+            //can_04.Set(can_03.DeviceId);
             can_05 = new CANTalon(5);
             can_06 = new CANTalon(6);
             can_07 = new CANTalon(7);
@@ -187,7 +188,7 @@ namespace CoconutsFrc2017
 
             // Sets the tolerance of the PID controller to 0.02.
             // Cancels the turning if the error is within 0.02.
-            TurnController.Controller.SetAbsoluteTolerance(0.02);
+            TurnController.Controller.SetAbsoluteTolerance(0.5);
 
             // Adds the PID controller to the Live Window for easier testing.
             LiveWindow.AddActuator("PID Controllers", "Turn Control", TurnController.Controller);
@@ -207,8 +208,36 @@ namespace CoconutsFrc2017
             // Adds the PID controller to the Live Window for easier testing.
             LiveWindow.AddActuator("PID Controllers", "Turn Control", TurntableController.Controller);
 
-            AutoFunctions.ConfigureTalon(can_01, ConfigureType.Position);
-            AutoFunctions.ConfigureTalon(can_02, ConfigureType.Position);
+            AutoFunctions.ConfigureTalon(can_01, ConfigureType.Position, new EncoderParameters
+            {
+                AllowedError = 1,
+                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
+                NominalVoltage = 0.0f,
+                PeakVoltage = 6.0f,
+                PIDFValues = new PIDF
+                {
+                    kP = 1,
+                    kI = 0,
+                    kD = 0,
+                    kF = 0
+                },
+                ReverseSensor = false
+            });
+            AutoFunctions.ConfigureTalon(can_03, ConfigureType.Position, new EncoderParameters
+            {
+                AllowedError = 1,
+                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
+                NominalVoltage = 0.0f,
+                PeakVoltage = 6.0f,
+                PIDFValues = new PIDF
+                {
+                    kP = 1,
+                    kI = 0,
+                    kD = 0,
+                    kF = 0
+                },
+                ReverseSensor = true
+            });
         }
 
         ///<summary>

@@ -3,6 +3,7 @@ using CTRE;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using WPILib.SmartDashboard;
 using static CTRE.CANTalon;
 
 namespace CoconutsFrc2017
@@ -16,30 +17,56 @@ namespace CoconutsFrc2017
         /// <param name="desiredDistance">Distance in meters.</param>
         public static void Drive(double desiredDistance)
         {
-            throw new NotImplementedException();
+            RobotMap.Left1.MotorControlMode  = WPILib.Interfaces.ControlMode.Position;
+            RobotMap.Right1.MotorControlMode = WPILib.Interfaces.ControlMode.Position;
+
+            // Converts meters to inches.
+            double desiredInches = 39.3701 * desiredDistance;
+
+            // Converts inches to rotations.
+            double rotations = desiredInches / 3.29; // 3.29 inches per rotation.
+
+            // Drive with the specified distance.
+            DriveRotations(rotations);
         }
 
-        /// <summary>
-        /// Drive the specified encoder ticks.
-        /// </summary>
-        /// <param name="encoderTicks">Distance in encoder ticks.</param>
-        public static void Drive(int encoderTicks)
-        {
-            // Set the motors to go to the tick location.
-            RobotMap.Left1.Set (encoderTicks);
-            RobotMap.Left2.Set (encoderTicks);
-            RobotMap.Right1.Set(encoderTicks);
-            RobotMap.Right2.Set(encoderTicks);
-        }
+        static int runs = 0;
 
         /// <summary>
-        /// Convert linear meters to ticks.
+        /// Drive the specified rotations.
         /// </summary>
-        /// <param name="input">Amount of meters.</param>
-        /// <returns>Number of ticks.</returns>
-        private static int MetersToTicks(double input)
+        /// <param name="rotations">Number of rotations.</param>
+        public static void DriveRotations(double rotations)
         {
-            throw new NotImplementedException();
+            runs++;
+            SmartDashboard.PutNumber("Runs", runs);
+            // Set the motors to go to the specified rotation amount.
+            RobotMap.Left1.Set (RobotMap.Left1.Get() + rotations);
+            // RobotMap.Left2.Set (RobotMap.Left1.Get() + rotations); // Commented out due to Left2  being a slave of Left1.
+            RobotMap.Right1.Set(RobotMap.Left1.Get() + rotations);
+            // RobotMap.Right2.Set(RobotMap.Left1.Get() + rotations); // Commented out due to Right2 being a slabe of Right2.
+            SmartDashboard.PutString("DriveRotations", "Exiting loop.");
+            bool leftHit  = false;
+            bool rightHit = false;
+            while(Math.Abs(RobotMap.Left1.GetClosedLoopError()) > 100) { }
+            //while (!leftHit && !rightHit)
+            //{
+            //    if ((Math.Abs(RobotMap.Left1.GetClosedLoopError())  < 100))
+            //        leftHit  = true;
+            //    if ((Math.Abs(RobotMap.Right1.GetClosedLoopError()) < 100))
+            //        rightHit = true;
+            //    SmartDashboard.PutString("DriveRotations", "Stuck in loop.");
+            //    SmartDashboard.PutNumber("Left Error",    RobotMap.Left1.GetClosedLoopError());
+            //    SmartDashboard.PutNumber("Left Encoder",  RobotMap.Left1.GetEncoderPosition());
+            //    SmartDashboard.PutNumber("Right Error",   RobotMap.Right1.GetClosedLoopError());
+            //    SmartDashboard.PutNumber("Right Encoder", RobotMap.Right1.GetEncoderPosition());
+            //}
+            SmartDashboard.PutString("DriveRotations", "Exiting loop.");
+            // Reset encoder positions.
+            //RobotMap.Left1.SetEncoderPostition (0);
+            //RobotMap.Right1.SetEncoderPostition(0);
+            SmartDashboard.PutNumber("Right Encoder", RobotMap.Right1.GetEncoderPosition());
+            SmartDashboard.PutNumber("Left Encoder",   RobotMap.Left1.GetEncoderPosition());
         }
 
         /// <summary>
@@ -64,12 +91,15 @@ namespace CoconutsFrc2017
         /// <param name="desiredAngle">Desired angle from -180 to 180.</param>
         public static void TurnToAngle(double desiredAngle)
         {
+            ConfigureTalon(RobotMap.Left1, ConfigureType.Normal);
+            ConfigureTalon(RobotMap.Right1, ConfigureType.Normal);
             // Set the controller setpoint to the desired angle.
             RobotMap.TurnController.Controller.Setpoint = desiredAngle;
             // Enables the controller.
             RobotMap.TurnController.Controller.Enable();
             // Keeps the robot in a loop until it is on target.
-            while (RobotMap.TurnController.Controller.OnTarget() == false) { }
+            while (RobotMap.TurnController.Controller.OnTarget() == false) { SmartDashboard.PutBoolean("On Target?", RobotMap.TurnController.Controller.OnTarget()); }
+            SmartDashboard.PutBoolean("On Target?", RobotMap.TurnController.Controller.OnTarget());
             // Disables the controller since we are on target.
             RobotMap.TurnController.Controller.Disable();
         }
@@ -166,6 +196,12 @@ namespace CoconutsFrc2017
 
                     ConfigureTalon(talon, type, parametersVelocity);
                     break;
+
+                case ConfigureType.Normal:
+
+                    talon.MotorControlMode = WPILib.Interfaces.ControlMode.PercentVbus;
+
+                    break;
             }
         }
 
@@ -217,6 +253,12 @@ namespace CoconutsFrc2017
 
                     // Set the talon to be in speed control mode.
                     talon.MotorControlMode = WPILib.Interfaces.ControlMode.Speed;
+
+                    break;
+
+                case ConfigureType.Normal:
+
+                    talon.MotorControlMode = WPILib.Interfaces.ControlMode.PercentVbus;
 
                     break;
             }
@@ -330,6 +372,7 @@ namespace CoconutsFrc2017
         /// <summary>
         /// Allows for maintaining a specific RPM of the motor.
         /// </summary>
-        Velocity
+        Velocity,
+        Normal
     }
 }

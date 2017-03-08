@@ -20,10 +20,14 @@ namespace CoconutsFrc2017
         /// </summary>
         public void Run()
         {
-            RobotMap.Right1.Set(50);
-            RobotMap.Left1.Set(50);
-            // Sleeps for 15 seconds.
-            Thread.Sleep(15000);
+            //AutoFunctions.Drive(0.5);
+            //AutoFunctions.Drive(-0.5);
+            //AutoFunctions.Drive(1);
+
+            AutoFunctions.TurnToAngle(-177);
+            AutoFunctions.Drive(0.5);
+            AutoFunctions.TurnToAngle(50);
+            //AutoFunctions.Drive(-0.5);
         }
     }
 }
