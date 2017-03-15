@@ -1,6 +1,7 @@
 ﻿using System;
 using WPILib;
 using WPILib.Interfaces;
+using static CoconutsFrc2017.RobotMap;
 
 namespace CoconutsFrc2017.Functions
 {
@@ -44,7 +45,7 @@ namespace CoconutsFrc2017.Functions
                 Controller.SetInputRange(-180f, 180f);
 
                 // Sets the peak output to be 45% power on the drive train.
-                Controller.SetOutputRange(-0.95, 0.95);
+                Controller.SetOutputRange(-.65, 65);
 
                 // Allow for a tolerance of 10 when turning.
                 Controller.SetAbsoluteTolerance(5);
@@ -70,7 +71,7 @@ namespace CoconutsFrc2017.Functions
         /// <param name="value">Speed to write as.</param>
         public void PidWrite(double value)
         {
-            RobotMap.Left1.Set(value);
+            RobotMap.Left1.Set (value);
             RobotMap.Right1.Set(value);
             // Output the value from the PID controller to the motors.
             // RobotMap.DriveTrain.SetLeftRightMotorOutputs(value, -value);

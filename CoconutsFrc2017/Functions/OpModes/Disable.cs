@@ -1,4 +1,5 @@
 ﻿using ChadDotNet;
+using WPILib.SmartDashboard;
 
 namespace CoconutsFrc2017
 {
@@ -10,10 +11,15 @@ namespace CoconutsFrc2017
 
         protected override void Init()
         {
+#if DEBUG
+            SmartDashboard.PutBoolean("Debug?", true);
+            SmartConsole.PrintWarning("In debug mode.");
+#endif
         }
 
         protected override void Main()
         {
+
         }
     }
 }

@@ -164,7 +164,7 @@ namespace CoconutsFrc2017
             can_10.SafetyEnabled = false;
             sw_0.SafetyEnabled   = false;
             #endregion
-
+            
             Intake2.Inverted = true;
             Shooter_Pivot.Inverted = true;
             
@@ -180,7 +180,7 @@ namespace CoconutsFrc2017
             // Creates a new instance of the turn controller.
             TurnController = new TurningPID(new PIDF
             {
-                kP = 0.13,
+                kP = 0.051,
                 kI = 0.00,
                 kD = 0.00,
                 kF = 0.00
@@ -188,7 +188,7 @@ namespace CoconutsFrc2017
 
             // Sets the tolerance of the PID controller to 0.02.
             // Cancels the turning if the error is within 0.02.
-            TurnController.Controller.SetAbsoluteTolerance(0.5);
+            TurnController.Controller.SetAbsoluteTolerance(0.2);
 
             // Adds the PID controller to the Live Window for easier testing.
             LiveWindow.AddActuator("PID Controllers", "Turn Control", TurnController.Controller);
@@ -207,37 +207,6 @@ namespace CoconutsFrc2017
 
             // Adds the PID controller to the Live Window for easier testing.
             LiveWindow.AddActuator("PID Controllers", "Turn Control", TurntableController.Controller);
-
-            AutoFunctions.ConfigureTalon(can_01, ConfigureType.Position, new EncoderParameters
-            {
-                AllowedError = 1,
-                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
-                NominalVoltage = 0.0f,
-                PeakVoltage = 6.0f,
-                PIDFValues = new PIDF
-                {
-                    kP = 1,
-                    kI = 0,
-                    kD = 0,
-                    kF = 0
-                },
-                ReverseSensor = false
-            });
-            AutoFunctions.ConfigureTalon(can_03, ConfigureType.Position, new EncoderParameters
-            {
-                AllowedError = 1,
-                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
-                NominalVoltage = 0.0f,
-                PeakVoltage = 6.0f,
-                PIDFValues = new PIDF
-                {
-                    kP = 1,
-                    kI = 0,
-                    kD = 0,
-                    kF = 0
-                },
-                ReverseSensor = true
-            });
         }
 
         ///<summary>
