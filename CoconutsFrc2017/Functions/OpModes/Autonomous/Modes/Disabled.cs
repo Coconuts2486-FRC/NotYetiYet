@@ -21,23 +21,25 @@ namespace CoconutsFrc2017
         /// </summary>
         public void Run()
         {
-            AutoFunctions.Drive(0.5);
-            while (OnTarget())
-            {
-                SmartDashboard.PutBoolean("In loop?", true);
-                SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
-                SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
-            }
-            SmartDashboard.PutBoolean("In loop?", false);
-            AutoFunctions.TurnToAngle(90);
-            AutoFunctions.Drive(0.5);
-            while (OnTarget())
-            {
-                SmartDashboard.PutBoolean("In loop?", true);
-                SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
-                SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
-            }
-            SmartDashboard.PutBoolean("In loop?", false);
+            // TEST CODE PLEASE IGNORE
+
+            //AutoFunctions.Drive(0.5);
+            //while (OnTarget())
+            //{
+            //    SmartDashboard.PutBoolean("In loop?", true);
+            //    SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
+            //    SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
+            //}
+            //SmartDashboard.PutBoolean("In loop?", false);
+            //AutoFunctions.TurnToAngle(90);
+            //AutoFunctions.Drive(0.5);
+            //while (OnTarget())
+            //{
+            //    SmartDashboard.PutBoolean("In loop?", true);
+            //    SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
+            //    SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
+            //}
+            //SmartDashboard.PutBoolean("In loop?", false);
         }
 
         public bool OnTarget()

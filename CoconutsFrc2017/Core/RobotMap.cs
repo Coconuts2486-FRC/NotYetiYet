@@ -180,7 +180,7 @@ namespace CoconutsFrc2017
             // Creates a new instance of the turn controller.
             TurnController = new TurningPID(new PIDF
             {
-                kP = 0.051,
+                kP = 0.0465, // 0.054
                 kI = 0.00,
                 kD = 0.00,
                 kF = 0.00

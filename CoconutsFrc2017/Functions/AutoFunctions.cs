@@ -117,6 +117,13 @@ namespace CoconutsFrc2017
             RobotMap.TurnController.Controller.Disable();
         }
 
+        public static bool OnTarget()
+        {
+            SmartDashboard.PutNumber("Left Difference", Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint));
+            SmartDashboard.PutNumber("Right Difference", Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096));
+            return (Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint) > 0.84 || Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096) > 0.84);
+        }
+
         /// <summary>
         /// Place the gear on the peg.
         /// </summary>
