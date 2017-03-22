@@ -92,27 +92,21 @@ namespace CoconutsFrc2017
             talon.Set(rpm);
         }
 
-        public static void SetTurntable(int position)
-        {
-            RobotMap.TurntableController.Controller.Setpoint = position;
-            RobotMap.TurntableController.Controller.Enable();
-        }
-
         /// <summary>
         /// Drive to the desired angle.
         /// </summary>
         /// <param name="desiredAngle">Desired angle from -180 to 180.</param>
         public static void TurnToAngle(double desiredAngle)
         {
-            RobotMap.Left1.MotorControlMode = WPILib.Interfaces.ControlMode.PercentVbus;
-            RobotMap.Right1.MotorControlMode = WPILib.Interfaces.ControlMode.PercentVbus;
+            Left1.MotorControlMode = WPILib.Interfaces.ControlMode.PercentVbus;
+            Right1.MotorControlMode = WPILib.Interfaces.ControlMode.PercentVbus;
             // Set the controller setpoint to the desired angle.
-            RobotMap.TurnController.Controller.Setpoint = desiredAngle;
+            TurnController.Controller.Setpoint = desiredAngle;
             // Enables the controller.
-            RobotMap.TurnController.Controller.Enable();
+            TurnController.Controller.Enable();
             // Keeps the robot in a loop until it is on target.
-            while (RobotMap.TurnController.Controller.OnTarget() == false) { SmartDashboard.PutBoolean("On Target?", RobotMap.TurnController.Controller.OnTarget()); }
-            SmartDashboard.PutBoolean("On Target?", RobotMap.TurnController.Controller.OnTarget());
+            while (TurnController.Controller.OnTarget() == false) { SmartDashboard.PutBoolean("On Target?", TurnController.Controller.OnTarget()); }
+            SmartDashboard.PutBoolean("On Target?", TurnController.Controller.OnTarget());
             // Disables the controller since we are on target.
             RobotMap.TurnController.Controller.Disable();
         }
@@ -122,14 +116,6 @@ namespace CoconutsFrc2017
             SmartDashboard.PutNumber("Left Difference", Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint));
             SmartDashboard.PutNumber("Right Difference", Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096));
             return (Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint) > 0.84 || Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096) > 0.84);
-        }
-
-        /// <summary>
-        /// Place the gear on the peg.
-        /// </summary>
-        public static void PlaceGear()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -146,20 +132,25 @@ namespace CoconutsFrc2017
         /// <param name="TimeFor">Once at the target, shoot for the supplied time in milliseconds.</param>
         public static void ShootFuel(long TimeFor)
         {
+            //
+            CamForward.pidController.Setpoint = FORWARD_SETPOINT; // Calibrate.
+            CamForward.pidController.Enable();
+            ShooterPos.pidController.Setpoint = TURN_SETPOINT;
+            ShooterPos.pidController.Enable();
+
+            while (!CamForward.OnTarget() && !ShooterPos.OnTarget()) ;
+
             // Creates a new stopwatch.
             Stopwatch sw = new Stopwatch();
             // Run the shooter at 1500 RPM.
-            RobotMap.Shooter.Set(1500);
+            Shooter.Set(1);
             // Allow the motors to rev up.
-            Thread.Sleep(250);
+            Thread.Sleep(1250);
             // Starts the stopwatch for timing.
             sw.Start();
 
             // Shoot while the stopwatch is under this time.
-            while (sw.ElapsedMilliseconds <= TimeFor)
-            {
-                // Put the turntable code in here for aligning.
-            }
+            while (sw.ElapsedMilliseconds <= TimeFor) ;
 
             // Stop the shooter.
             RobotMap.Shooter.Set(0);

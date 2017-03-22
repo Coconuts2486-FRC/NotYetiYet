@@ -13,6 +13,10 @@ namespace CoconutsFrc2017
     /// </summary>
     public static class RobotMap
     {
+        // Definitions for setpoints on the robot.
+        public const int FORWARD_SETPOINT = 10;
+        public const int TURN_SETPOINT    = 10;
+
         // Properties for accessing motor devices.
         #region DeviceProperties
         /// <summary>
@@ -177,6 +181,16 @@ namespace CoconutsFrc2017
             // Instantiates the NavX.
             NavX = new AHRS(SPI.Port.MXP);
 
+            // Creates a new copy of the turntable.
+            TurntableEncoder = new Encoder(8, 9);
+
+            #region PID Controllers
+            // Handles moving forwards and backwards for the shooter using the Pixy as the sensor.
+            CamForward = new CamForwardPID(3.00, 0.00, 0.00, 0.00);
+
+            // Handles the setpoint needed for the shooter using Pixy data.
+            ShooterPos = new ShooterPosPID(3.00, 0.00, 0.00, 0.00);
+
             // Creates a new instance of the turn controller.
             TurnController = new TurningPID(new PIDF
             {
@@ -192,21 +206,7 @@ namespace CoconutsFrc2017
 
             // Adds the PID controller to the Live Window for easier testing.
             LiveWindow.AddActuator("PID Controllers", "Turn Control", TurnController.Controller);
-
-            // Creates a new copy of the turntable.
-            TurntableEncoder = new Encoder(8, 9);
-
-            // Creates a new copy of EncoderPID as a TurntableController.
-            TurntableController = new EncoderPID(Shooter_Pivot, TurntableEncoder, new PIDF
-            {
-                kP = 0.005,
-                kI = 0.000,
-                kD = 0.000,
-                kF = 0.000
-            });
-
-            // Adds the PID controller to the Live Window for easier testing.
-            LiveWindow.AddActuator("PID Controllers", "Turn Control", TurntableController.Controller);
+            #endregion
         }
 
         ///<summary>
@@ -270,9 +270,14 @@ namespace CoconutsFrc2017
         public static Encoder TurntableEncoder;
 
         /// <summary>
-        /// PID controller for the turntable.
+        /// Handles moving forwards and backwards for the shooter using the Pixy as the sensor.
         /// </summary>
-        public static EncoderPID TurntableController;
+        public static CamForwardPID CamForward;
+
+        /// <summary>
+        /// Handles the setpoint needed for the shooter using Pixy data.
+        /// </summary>
+        public static ShooterPosPID ShooterPos;
         #endregion
     }
 }

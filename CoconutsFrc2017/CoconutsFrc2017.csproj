@@ -17,6 +17,21 @@
     <AssemblyName>CoconutsFrc2017</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,6 +107,7 @@
     <Compile Include="Functions\AutoFunctions.cs" />
     <Compile Include="Functions\DataLogger.cs" />
     <Compile Include="Functions\EncoderPID.cs" />
+    <Compile Include="Functions\ShooterFinder.cs" />
     <Compile Include="Functions\TurningPID.cs" />
     <Compile Include="Functions\OpModes\Auto.cs" />
     <Compile Include="Functions\OpModes\EmergencyMode.cs" />
@@ -104,13 +120,11 @@
     <Compile Include="Functions\OpModes\TeleOp.cs" />
     <Compile Include="Functions\OpModes\Test.cs" />
     <Compile Include="Other\DriveTrain.cs" />
-    <Compile Include="Other\ObjectDetector.cs" />
     <Compile Include="Other\PixyLibs\Block.cs" />
     <Compile Include="Other\PixyLibs\BlockArray.cs" />
     <Compile Include="Other\PixyLibs\pixy.cs" />
     <Compile Include="Other\PixyLibs\PixyHandler.cs" />
     <Compile Include="Other\PixyLibs\pixyPINVOKE.cs" />
-    <Compile Include="Other\VisionHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -137,6 +151,18 @@
     <None Include="wpinative\libopencv_videoio.so.3.1" />
     <None Include="wpinative\libopencv_videostab.so.3.1" />
     <None Include="wpinative\libwpiutil.so" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
