@@ -23,10 +23,10 @@ namespace CoconutsFrc2017
                 AllowedError = 0,
                 Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
                 NominalVoltage = 0.0f,
-                PeakVoltage = 6.0f,
+                PeakVoltage = 3.0f,
                 PIDFValues = new PIDF
                 {
-                    kP = 0.126,
+                    kP = 0.131,
                     kI = 0,
                     kD = 0,
                     kF = 0
@@ -38,10 +38,10 @@ namespace CoconutsFrc2017
                 AllowedError = 0,
                 Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
                 NominalVoltage = 0.0f,
-                PeakVoltage = 6.0f,
+                PeakVoltage = 3.0f,
                 PIDFValues = new PIDF
                 {
-                    kP = 0.126,
+                    kP = 0.131,
                     kI = 0,
                     kD = 0,
                     kF = 0
@@ -65,6 +65,71 @@ namespace CoconutsFrc2017
             DriveRotations(left, right);
 
             SmartDashboard.PutNumber("Encoder Distance", rotations);
+        }
+
+        public static void DriveFast(double desiredDistance)
+        {
+            AutoFunctions.ConfigureTalon(Right1, ConfigureType.Position, new EncoderParameters
+            {
+                AllowedError = 0,
+                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
+                NominalVoltage = 0.0f,
+                PeakVoltage = 12f * .7f,
+                PIDFValues = new PIDF
+                {
+                    kP = 0.151,
+                    kI = 0,
+                    kD = 0,
+                    kF = 0
+                },
+                ReverseSensor = false
+            });
+            AutoFunctions.ConfigureTalon(Left1, ConfigureType.Position, new EncoderParameters
+            {
+                AllowedError = 0,
+                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
+                NominalVoltage = 0.0f,
+                PeakVoltage = 12f * .9f,
+                PIDFValues = new PIDF
+                {
+                    kP = 0.151,
+                    kI = 0,
+                    kD = 0,
+                    kF = 0
+                },
+                ReverseSensor = true
+            });
+
+            Right1.SetEncoderPostition(0); // Reset the encoder position to 0.
+            Left1.SetEncoderPostition(0);  // Reset the eoncoder position to 0.
+            // Converts meters to inches.
+            double desiredInches = 39.3701 * desiredDistance;
+
+            // Converts inches to rotations.
+            double rotations = desiredInches / 3.29; // 3.29 inches per rotation.
+
+            // Gets the displacement of the motors to set.
+            double left = /*(RobotMap.Left1 .GetEncoderPosition() / 4096 * 39.3701 / 3.29) + */rotations;
+            double right = /*(RobotMap.Right1.GetEncoderPosition() / 4096 * 39.3701 / 3.29) + */rotations;
+
+            // Drive with the specified distance.
+            DriveRotations(left);
+
+            SmartDashboard.PutNumber("Encoder Distance", rotations);
+        }
+
+        /// <summary>
+        /// Drive the specified rotations.
+        /// </summary>
+        /// <param name="leftRotations">Linear distance for the left motor to travel.</param>
+        /// <param name="rightRotations">Linear distance for the right motor to travel.</param>
+        public static void DriveRotations(double rightRotations)
+        {
+            SmartDashboard.PutNumber("Right Ticks", rightRotations);
+            Right1.SetEncoderPostition(0); // Reset the encoder position to 0.
+            Left1.SetEncoderPostition(0);  // Reset the eoncoder position to 0.
+            RobotMap.Right1.Set(rightRotations);
+            RobotMap.Left1.Set(rightRotations);
         }
 
         /// <summary>
@@ -115,7 +180,31 @@ namespace CoconutsFrc2017
         {
             SmartDashboard.PutNumber("Left Difference", Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint));
             SmartDashboard.PutNumber("Right Difference", Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096));
-            return (Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint) > 0.84 || Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096) > 0.84);
+            return (Math.Abs(-RobotMap.Left1.GetEncoderPosition() / 4096 - RobotMap.Left1.Setpoint) > 0.9 || Math.Abs(RobotMap.Right1.Setpoint - RobotMap.Right1.GetEncoderPosition() / 4096) > 0.9);
+        }
+
+        public static void DriveStraight(double time)
+        {
+            double initAngle = NavX.GetYaw();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            while(sw.ElapsedMilliseconds < time)
+            {
+                //double angle = RobotMap.NavX.GetYaw();
+                //double offset = angle - initAngle;
+                //if (offset < 0)
+                //{
+                //    RobotMap.Left1.Set(0.75 + (0.05 * offset));
+                //    Right1.Set(0.75);
+                //}
+                //else if (offset > 0)
+                //{
+                //    Left1.Set(0.75);
+                //    Right1.Set(0.75 + (0.05 * offset));
+                //}
+                //else
+                    RobotMap.DriveTrain.SetLeftRightMotorOutputs(0.75, 0.75);
+            }
         }
 
         /// <summary>
@@ -124,14 +213,14 @@ namespace CoconutsFrc2017
         public static void ShootFuel()
         {
             ShootFuel(5000);
-        }
+        } 
 
         /// <summary>
         /// Align to the target then shoot for the supplied amount of time.
         /// </summary>
         /// <param name="TimeFor">Once at the target, shoot for the supplied time in milliseconds.</param>
         public static void ShootFuel(long TimeFor)
-        {
+        { 
             //
             CamForward.pidController.Setpoint = FORWARD_SETPOINT; // Calibrate.
             CamForward.pidController.Enable();

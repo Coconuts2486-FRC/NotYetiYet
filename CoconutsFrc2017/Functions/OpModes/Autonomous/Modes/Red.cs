@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using WPILib.SmartDashboard;
+using System.Threading;
 
 namespace CoconutsFrc2017
 {
@@ -34,18 +35,22 @@ namespace CoconutsFrc2017
             //AutoFunctions.TurnToAngle(90);     // Turn to 90 degrees, which is perpendicular to the perimeter.
             //AutoFunctions.Drive(1.275);        // Drive forward 1.275 meters to the hopper.
 
-            AutoFunctions.Drive(3.08);
-            while (AutoFunctions.OnTarget())
+            AutoFunctions.Drive(2.8);
+            Stopwatch stop = new Stopwatch();
+            stop.Start();
+            while (AutoFunctions.OnTarget() || stop.ElapsedMilliseconds < 8000)
             {
                 SmartDashboard.PutBoolean("In loop?", true);
                 SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
                 SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
             }
             SmartDashboard.PutBoolean("In loop?", false);
-
+            RobotMap.GearSlot.Set(true);
+            AutoFunctions.DriveFast(0.35);
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            while (sw.ElapsedMilliseconds < 1500) ;
+            while (sw.ElapsedMilliseconds < 5000) ;
+
 
             AutoFunctions.Drive(-1.75);
             while (AutoFunctions.OnTarget())
@@ -69,6 +74,8 @@ namespace CoconutsFrc2017
     {
         public void Run()
         {
+            //AutoFunctions.DriveStraight(5000);
+            //RobotMap.GearSlot.Set(true);
             // Place the gear.
             //AutoFunctions.Drive(0.52);         // Drive forward 0.52 meters.
             //AutoFunctions.TurnToAngle(-32.70); // Turn to 60.25 degrees.
@@ -78,17 +85,18 @@ namespace CoconutsFrc2017
             //AutoFunctions.PlaceGear();         // Place the gear.
 
             AutoFunctions.Drive(2.08);
-            while (AutoFunctions.OnTarget())
+            Stopwatch sw = new Stopwatch();
+            while (AutoFunctions.OnTarget() || sw.ElapsedMilliseconds < 5000)
             {
                 SmartDashboard.PutBoolean("In loop?", true);
                 SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
                 SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
             }
             SmartDashboard.PutBoolean("In loop?", false);
-
-            Stopwatch sw = new Stopwatch();
+            RobotMap.GearSlot.Set(true);
             sw.Start();
-            while (sw.ElapsedMilliseconds < 1500) ;
+            while (sw.ElapsedMilliseconds < 5000) ;
+
 
             AutoFunctions.Drive(-1.75);
             while (AutoFunctions.OnTarget())
@@ -121,6 +129,20 @@ namespace CoconutsFrc2017
     {
         public void Run()
         {
+            RobotMap.Shooter.Set(.95);
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            while (sw.ElapsedMilliseconds < 1000) ;
+            RobotMap.Agitator.Set(1);
+            RobotMap.IntakeSecondStage.Set(-1);
+            sw.Reset();
+            sw.Start();
+            while (sw.ElapsedMilliseconds < 12000) ;
+            RobotMap.Shooter.Set(0);
+            RobotMap.Agitator.Set(0);
+            RobotMap.IntakeSecondStage.Set(0);
+            AutoFunctions.DriveFast(-3.1);
+
             //// Place the gear.
             //AutoFunctions.Drive(2.445);        // Drive forward one meter to place the gear.
             //AutoFunctions.TurnToAngle(60.25);  // Turn to 60.25 degrees.
@@ -134,38 +156,40 @@ namespace CoconutsFrc2017
             //AutoFunctions.TurnToAngle(-90);    // Turn to -90 degrees.
             //AutoFunctions.Drive(0.825);        // Drive forward 0.825 to the hopper.
 
-            AutoFunctions.Drive(3.08);
-            while (AutoFunctions.OnTarget())
-            {
-                SmartDashboard.PutBoolean("In loop?", true);
-                SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
-                SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
-            }
-            SmartDashboard.PutBoolean("In loop?", false);
+            //AutoFunctions.Drive(3.08);
+            //while (AutoFunctions.OnTarget())
+            //{
+            //    SmartDashboard.PutBoolean("In loop?", true);
+            //    SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
+            //    SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
+            //}
+            //SmartDashboard.PutBoolean("In loop?", false);
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            while (sw.ElapsedMilliseconds < 1500) ;
+            //RobotMap.GearSlot.Set(true);
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
+            //while (sw.ElapsedMilliseconds < 5000) ;
 
-            AutoFunctions.Drive(-1.75);
-            while (AutoFunctions.OnTarget())
-            {
-                SmartDashboard.PutBoolean("In loop?", true);
-                SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
-                SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
-            }
-            SmartDashboard.PutBoolean("In loop?", false);
 
-            AutoFunctions.TurnToAngle(60);
+            //AutoFunctions.Drive(-1.75);
+            //while (AutoFunctions.OnTarget())
+            //{
+            //    SmartDashboard.PutBoolean("In loop?", true);
+            //    SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
+            //    SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
+            //}
+            //SmartDashboard.PutBoolean("In loop?", false);
 
-            AutoFunctions.Drive(5);
-            while (AutoFunctions.OnTarget())
-            {
-                SmartDashboard.PutBoolean("In loop?", true);
-                SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
-                SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
-            }
-            SmartDashboard.PutBoolean("In loop?", false);
+            //AutoFunctions.TurnToAngle(60);
+
+            //AutoFunctions.Drive(5);
+            //while (AutoFunctions.OnTarget())
+            //{
+            //    SmartDashboard.PutBoolean("In loop?", true);
+            //    SmartDashboard.PutNumber("Left Position", RobotMap.Left1.GetEncoderPosition());
+            //    SmartDashboard.PutNumber("Right Position", RobotMap.Right1.GetEncoderPosition());
+            //}
+            //SmartDashboard.PutBoolean("In loop?", false);
         }
     }
 }

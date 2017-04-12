@@ -22,39 +22,39 @@ namespace CoconutsFrc2017
             // Instantiates AutoHandler.
             AutoHandler = new Handler();
 
-            // Sets the CAN Talons to rely off of the encoders for movement.
-            AutoFunctions.ConfigureTalon(Right1, ConfigureType.Position, new EncoderParameters
-            {
-                AllowedError = 0,
-                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
-                NominalVoltage = 0.0f,
-                PeakVoltage = 6.0f,
-                PIDFValues = new PIDF
-                {
-                    kP = 0.126,
-                    kI = 0,
-                    kD = 0,
-                    kF = 0
-                },
-                ReverseSensor = false
-            });
-            AutoFunctions.ConfigureTalon(Left1, ConfigureType.Position, new EncoderParameters
-            {
-                AllowedError = 0,
-                Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
-                NominalVoltage = 0.0f,
-                PeakVoltage = 6.0f,
-                PIDFValues = new PIDF
-                {
-                    kP = 0.126,
-                    kI = 0,
-                    kD = 0,
-                    kF = 0
-                },
-                ReverseSensor = true
-            });
+           //Sets the CAN Talons to rely off of the encoders for movement.
+           AutoFunctions.ConfigureTalon(Right1, ConfigureType.Position, new EncoderParameters
+           {
+               AllowedError = 0,
+               Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
+               NominalVoltage = 0.0f,
+               PeakVoltage = 12.0f,
+               PIDFValues = new PIDF
+               {
+                   kP = 0.151,
+                   kI = 0,
+                   kD = 0,
+                   kF = 0
+               },
+               ReverseSensor = false
+           });
+           AutoFunctions.ConfigureTalon(Left1, ConfigureType.Position, new EncoderParameters
+           {
+               AllowedError = 0,
+               Device = CANTalon.FeedbackDevice.CtreMagEncoderRelative,
+               NominalVoltage = 0.0f,
+               PeakVoltage = 12.0f, //3.4f
+               PIDFValues = new PIDF
+               {
+                   kP = 0.151,
+                   kI = 0,
+                   kD = 0,
+                   kF = 0
+               },
+               ReverseSensor = true
+           });
 
-            Right1.SetEncoderPostition(0); // Reset the encoder position to 0.
+           Right1.SetEncoderPostition(0); // Reset the encoder position to 0.
             Right1.ReverseOutput(true);    // Reverse the direction of the motor.
             Right2.MotorControlMode = WPILib.Interfaces.ControlMode.Follower;
             Right2.Set(Right1.DeviceId);   // Configure the second right talon to be a follower of the other right talon.
@@ -66,6 +66,7 @@ namespace CoconutsFrc2017
             Left2.Set(Left1.DeviceId);     // Configure the second left talon to be a follower of the other left talon.
 
             NavX.Reset(); // Reset the NavX's yaw value to zero.
+            
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace CoconutsFrc2017
             Right1.SetEncoderPostition(0); // Reset the encoder position to 0.
             Left1.SetEncoderPostition(0);  // Reset the eoncoder position to 0.
             // Runs the selected autonomous.
-
+            //AutoHandler.RunAuto(Handler.AutoPosition.Disabled);
             // Both down. 0b00
             if (DriveStick_Left.GetAxis(WPILib.Joystick.AxisType.Z) < 0.5 && DriveStick_Right.GetAxis(WPILib.Joystick.AxisType.Z) < 0.5)
             {
@@ -94,6 +95,15 @@ namespace CoconutsFrc2017
             {
                 SmartConsole.PrintInfo("Currently running position 2 autonomous on the " + DriverStation.Instance.GetAlliance() + " alliance.");
                 AutoHandler.RunAuto(Handler.AutoPosition.Position2);
+                /*DriveTrain.Move(.65, .70);
+
+                Snooze(2500);
+
+                DriveTrain.StopMotor();
+
+                GearSlot.Set(true);
+
+                while (true) Snooze(1);*/
             }
             // Left stick up, right stick up. 0b11
             else if (DriveStick_Left.GetAxis(WPILib.Joystick.AxisType.Z) > 0.5 && DriveStick_Right.GetAxis(WPILib.Joystick.AxisType.Z) > 0.5)

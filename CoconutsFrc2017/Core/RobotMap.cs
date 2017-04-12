@@ -1,5 +1,6 @@
 ﻿using WPILib;
 using CTRE;
+using CSCore;
 using WPILib.Interfaces;
 using System;
 using WPILib.Extras.NavX;
@@ -24,25 +25,25 @@ namespace CoconutsFrc2017
         /// Remember to enable BOTH right motors!
         /// </summary>
         /// <seealso cref="Right2"/>
-        public static CANTalon Right1             { get { return can_01;   } }
+        public static CANTalon Right1             { get { return can_06;   } }
         /// <summary>
         /// Second right motor of the drive train.
         /// Remember to enable BOTH right motors!
         /// </summary>
         /// <seealso cref="Right1"/>
-        public static CANTalon Right2             { get { return can_02;   } }
+        public static CANTalon Right2             { get { return can_07;   } }
         /// <summary>
         /// Left motor of the drive train.
         /// Remember to enable BOTH left motors!
         /// </summary>
         /// <seealso cref="Left2"/>
-        public static CANTalon Left1              { get { return can_03;   } }
+        public static CANTalon Left1              { get { return can_08;   } }
         /// <summary>
         /// Second left motor of the drive train.
         /// Remember to enable BOTH left motors!
         /// </summary>
         /// <seealso cref="Left1"/>
-        public static CANTalon Left2              { get { return can_04;   } }
+        public static CANTalon Left2              { get { return can_09;   } }
         /// <summary>
         /// Turn table for the shooter.
         /// Drives a belt that rotates the table.
@@ -52,22 +53,22 @@ namespace CoconutsFrc2017
         /// Fuel intake motor.
         /// Used in the front rollers.
         /// </summary>
-        public static CANTalon Intake1            { get { return can_06;   } }
+        public static CANTalon Intake1            { get { return can_01;   } }
         /// <summary>
         /// Second fuel intake motor.
         /// As of 3/2/17, only the competition bot has this motor.
         /// </summary>
-        public static CANTalon Intake2            { get { return can_07;   } }
+        public static CANTalon Intake2            { get { return can_02;   } }
         /// <summary>
         /// Fuel shooter motor.
         /// On the turntable, and is belt-driven.
         /// </summary>
-        public static CANTalon Shooter            { get { return can_08;   } }
+        public static CANTalon Shooter            { get { return can_03;   } }
         /// <summary>
         /// Shooter intake motor.
         /// Pulls balls into shooter.
         /// </summary>
-        public static CANTalon IntakeStage2       { get { return can_09;   } }
+        public static CANTalon IntakeSecondStage       { get { return can_04;   } }
         /// <summary>
         /// Agitator motor.
         /// Plexiglass plates that spin on the inside of the bot to move balls around.
@@ -77,12 +78,13 @@ namespace CoconutsFrc2017
         /// Solenoids for shifting the drive train into different gears.
         /// Located inside the gearbox.
         /// </summary>
-        public static Solenoid Shifters           { get { return pcm_11_1; } }
+        public static Solenoid Shifters           { get { return pcm_11_2; } }
         /// <summary>
         /// Solenoid for engaging the power take-off (PTO).
         /// Located near the shifters.
         /// </summary>
-        public static Solenoid PTO                { get { return pcm_11_2; } }
+        public static Solenoid PTO                { get { return pcm_11_1; } }
+        public static Solenoid GearSlot { get { return pcm_11_0; } }
         /// <summary>
         /// Left joystick.
         /// Located on the driver board.
@@ -177,7 +179,9 @@ namespace CoconutsFrc2017
 
             // Initializes the camera server with the default options.
             CameraServer.Instance.StartAutomaticCapture();
-
+            //UsbCamera cam = new UsbCamera("cam0", 0);
+            //cam.SetResolution(320, 240);
+            //CameraServer.Instance.StartAutomaticCapture(cam);
             // Instantiates the NavX.
             NavX = new AHRS(SPI.Port.MXP);
 

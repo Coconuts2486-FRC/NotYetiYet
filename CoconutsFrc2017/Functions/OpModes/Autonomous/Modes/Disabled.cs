@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using WPILib.SmartDashboard;
+using static CoconutsFrc2017.RobotMap;
 
 namespace CoconutsFrc2017
 {
@@ -21,6 +22,13 @@ namespace CoconutsFrc2017
         /// </summary>
         public void Run()
         {
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
+            //while (true)
+            //{
+            //Right1.Set(50);
+            //Left1.Set(50);
+            //}
             // TEST CODE PLEASE IGNORE
 
             //AutoFunctions.Drive(0.5);
